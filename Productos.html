@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Website</title>
+    <link rel="icon" href="./logos/plane.png">
+    <link rel="stylesheet" href="styleProductos.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <!--Header-->
+    <header>
+        <!--Nav-->
+        <div class="nav container">
+
+            <a href="#"> <img src="./logos/despegar.png" alt="logo-despegar" class="logo"></a>
+            <ul class="navigation">
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="./nosotros.html">Nosotros</a></li>
+                <li><a href="./contacto.html">Contacto</a></li>
+            </ul>
+
+            <!--Carito icono-->
+            <i class='bx bx-shopping-bag' id="cart-icon"></i>
+            <!--Cart-->
+            <div class="cart">
+                <h2 class="cart-title">Tus Pedidos</h2>
+                <!--Content-->
+                <div class="cart-content">
+
+                </div>
+
+                <!--Total-->
+                <div class="total">
+                    <div class="total-title">Total</div>
+                    <div class="total-price">$0</div>
+                </div>
+
+                <!--Buy Button-->
+                <button type="button" class="btn-buy">Finalizar Compra</button>
+                <!--Cart Close-->
+                <i class='bx bx-x' id="close-cart"></i>
+
+            </div>
+
+        </div>
+    </header>
+
+    <!--Shop-->
+    <section class="shop container">
+
+        <h2 class="section-title">Vuelos Principales</h2>
+        <!--Content-->
+
+        <div class="shop-content">
+            <!--Box 1-->
+            <div class="product-box">
+                <img src="./vuelos/brc.JPG" alt="" class="product-img">
+                <!--<h2 class="product-title">SIMPLE</h2> -->
+
+                <button id="open">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">¡Lo Quiero!</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--Box 2-->
+            <div class="product-box">
+                <img src="./vuelos/iguazu.jpg" alt="" class="product-img">
+                <!-- <h2 class="product-title">CUARTO DE LIBRA</h2> -->
+                <button id="open2">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">
+                    $700</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--Box 3-->
+            <div class="product-box">
+                <img src="./vuelos/salta.jpg" alt="" class="product-img">
+                <!-- <h2 class="product-title">D.CUARTO DE LIBRA</h2> -->
+                <button id="open3">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">
+                    $915</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--Box 4-->
+            <div class="product-box">
+                <img src="./vuelos/miami.jpg" alt="" class="product-img">
+                <!-- <h2 class="product-title">BICMAC</h2> -->
+                <button id="open4">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">
+                    $850</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--Box 5-->
+            <div class="product-box">
+                <img src="./vuelos/cordoba.jpg" alt="" class="product-img">
+                <!-- <h2 class="product-title">MCFIESTA</h2> -->
+                <button id="open5">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">
+                    $750</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--Box 6-->
+            <div class="product-box">
+                <img src="./vuelos/jujuy.jpg" alt="" class="product-img">
+                <!-- <h2 class="product-title">TRIPLE CON QUESO</h2> -->
+                <button id="open6">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">
+                    $800</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!--Box 7-->
+            <div class="product-box">
+                <img src="./vuelos/rio.jpg" alt="" class="product-img">
+                <!-- <h2 class="product-title">TRIPLE MAC</h2> -->
+                <button id="open7">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">
+                    $1100</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+            <!-- Box 8 -->
+            <div class="product-box">
+                <img src="./vuelos/mendoza.jpg" alt="" class="product-img">
+                <!-- <h2 class="product-title">MCNIFICA</h2> -->
+                <button id="open8">Ver Más</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <span class="price">
+                    $950</span>
+                <i class='bx bx-shopping-bag add-cart'></i>
+            </div>
+        </div>
+    </section>
+
+
+    <div id="modal_container" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del vuelo</h2>
+
+            <img src="./vuelos/brcdetalles.JPG" />
+            <!--  <p>La belleza radica en la simpleza de las cosas. Unala mejor carne 100% vacuna y dos quesos que lo rodean, junto con el toque del kétchup, mostaza y la cebolla fresca.
+      </p>
+      <br>
+      <div>
+       <h3>Informacion Nutricional</h3>
+       <div style="text-align:center;">
+          <table border="1" style="margin: 0 auto;">
+              <tr>
+                  <td></td>
+                  <td>Por producto</td>
+                  <td>I.D.R. %</td>
+
+              </tr>
+              <tr>
+                  <td>Calorias</td>
+                  <td>520kcal</td>
+                  <td>26%</td>
+              </tr>
+              <tr>
+                 <td>Grasa total</td>
+                 <td>29g</td>
+                 <td>52%</td>
+             </tr>
+             <tr>
+                 <td>Carbohidratos</td>
+                 <td>36g</td>
+                 <td>12%</td>
+             </tr>
+             <tr>
+                <td>Proteinas</td>
+                <td>28g</td>
+                <td>38%</td>
+            </tr>
+        </table>
+    </div> -->
+            <button id="close">Cerrar</button>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- <div id="modal_container2" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+            <img src="./hamburguesas/CuartoLibra.jpg" />
+            <p>La belleza radica en la simpleza de las cosas. Una hamburguesa que no
+                se anda con vueltas. La perfecta combinación entre la mejor carne
+                100% vacuna y dos quesos que lo rodean, junto con el toque del kétchup,
+                mostaza y la cebolla fresca.
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>520kcal</td>
+                            <td>26%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>29g</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>36g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>28g</td>
+                            <td>38%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close2">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal_container4" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./hamburguesas/bigMac.jpg" />
+            <p>
+                Quizás sean las dos hamburguesas de carne 100% vacuna con esa salsa especial
+                y queso derretido, el toque de cebolla y la frescura de la lechuga o el crocante del pepino,
+                lo que la hace la hamburguesa más famosa del mundo. Un sabor único. </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>234kcal</td>
+                            <td>26%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>24g</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>36g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>28g</td>
+                            <td>38%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close4">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_container3" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./hamburguesas/dobleCuartoLibra.jpg" />
+            <p>Imaginá la sensación del clásico Cuarto de Libra. Imaginalo con un medallón de deliciosa carne 100%
+                vacuna, queso cheddar,
+                cebolla, kétchup y mostaza ¿Listo? Ahora duplicá esa sensación. Ya tenés el Doble Cuarto en la cabeza.
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>774kcal</td>
+                            <td>26%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>24g</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>54g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>48g</td>
+                            <td>34%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close3">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_container5" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./hamburguesas/mcFiesta.jpg" />
+            <p>Hamburguesa elaborada con carne 100% de carne vacuna, mayonesa, lechuga, tomate.
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>114kcal</td>
+                            <td>26%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>54g</td>
+                            <td>62%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>54g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>48g</td>
+                            <td>34%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close5">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal_container6" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./hamburguesas/tripleconqueso.png" />
+            <p>
+                Tres medallones de carne 100% vacuna, queso derretido, mostaza, kétchup y cebolla triturada, es algo que
+                nunca puede fallar.
+
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>774kcal</td>
+                            <td>26%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>24g</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>54g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>48g</td>
+                            <td>34%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close6">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal_container7" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./hamburguesas/tripleMac.jpg" />
+            <p>
+                Una hamburguesa que no es para cualquiera. Sólo los más extremos están dispuestos a saborear tres
+                carnes 100% vacuna acompañadas del clásico pan McDonald’s, su característica salsa especial, queso
+                derretido,
+                lechuga fresca, pepino crocante y el toque de cebolla que la hace única.
+
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>544kcal</td>
+                            <td>56%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>34g</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>54g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>48g</td>
+                            <td>34%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close7">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal_container8" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./hamburguesas/mcNifica.jpg" />
+            <p>
+                En un mundo donde todos buscan lo nuevo todo el tiempo, la McNífica viene a rectificar lo bueno de ser
+                clásico.
+                Carne, queso cheddar, tomate, lechuga y cebolla, acompañados de kétchup, mostaza y mayonesa.
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>514kcal</td>
+                            <td>26%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>24g</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>54g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>48g</td>
+                            <td>34%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close8">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal_container9" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./hamburguesas/papasP.jpg" />
+            <p>
+                Calientes, crujientes y deliciosas, tus aliadas perfectas para cualquier comida.
+                Disfrutá de nuestras papas mundialmente famosas, desde la primera hasta la última en su versión pequeña.
+
+
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>84kcal</td>
+                            <td>26%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>4g</td>
+                            <td>52%</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>14g</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>4g</td>
+                            <td>34%</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close9">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_container10" class="modal-container">
+        <div class="modal">
+            <h2>Detalles del producto</h2>
+
+            <img src="./papas/papasG.jpg" />
+            <p>Calientes, crujientes y deliciosas, una nueva variedad llega para quedarse: Papas Fritas Cheddar fundido
+                y trocitos de bacon.
+            </p>
+            <br>
+            <div>
+                <h3>Informacion Nutricional</h3>
+                <div style="text-align:center;">
+                    <table border="1" style="margin: 0 auto;">
+                        <tr>
+                            <td></td>
+                            <td>Por producto</td>
+                            <td>I.D.R. %</td>
+
+                        </tr>
+                        <tr>
+                            <td>Calorias</td>
+                            <td>220kcal</td>
+                            <td>13%</td>
+                        </tr>
+                        <tr>
+                            <td>Grasa total</td>
+                            <td>20g</td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohidratos</td>
+                            <td>125g</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Proteinas</td>
+                            <td>10g</td>
+                            <td>3</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="close10">Cerrar</button>
+            </div>
+        </div>
+
+        <div id="modal_container11" class="modal-container">
+            <div class="modal">
+                <h2>Detalles del producto</h2>
+
+                <img src="./papas/papasCheddar.jpg" />
+                <p>Calientes, crujientes y deliciosas, una nueva variedad llega para quedarse: Papas Fritas Cheddar
+                    fundido y trocitos de bacon.
+                </p>
+                <br>
+                <div>
+                    <h3>Informacion Nutricional</h3>
+                    <div style="text-align:center;">
+                        <table border="1" style="margin: 0 auto;">
+                            <tr>
+                                <td></td>
+                                <td>Por producto</td>
+                                <td>I.D.R. %</td>
+
+                            </tr>
+                            <tr>
+                                <td>Calorias</td>
+                                <td>120kcal</td>
+                                <td>13%</td>
+                            </tr>
+                            <tr>
+                                <td>Grasa total</td>
+                                <td>15g</td>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <td>Carbohidratos</td>
+                                <td>100g</td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>Proteinas</td>
+                                <td>10g</td>
+                                <td>3</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button id="close11">Cerrar</button>
+                </div>
+            </div>
+
+
+            <div id="modal_container12" class="modal-container">
+                <div class="modal">
+                    <h2>Detalles del producto</h2>
+
+                    <img src="./papas/ensaladaAcomp.jpg" />
+                    <p>Comida saludable, coma lechuga, tomate, pollo, etc
+                    </p>
+                    <br>
+                    <div>
+                        <h3>Informacion Nutricional</h3>
+                        <div style="text-align:center;">
+                            <table border="1" style="margin: 0 auto;">
+                                <tr>
+                                    <td></td>
+                                    <td>Por producto</td>
+                                    <td>I.D.R. %</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Calorias</td>
+                                    <td>0kcal</td>
+                                    <td>0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Grasa total</td>
+                                    <td>0g</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Carbohidratos</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>Proteinas</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button id="close12">Cerrar</button>
+                    </div>
+                </div>
+
+                <div id="modal_container13" class="modal-container">
+                    <div class="modal">
+                        <h2>Detalles del producto</h2>
+
+                        <img src="./gaseosas/AguaSinGas.jpg" />
+                        <p>Burbujas contra el calor, contra la sed, contra el aburrimiento. Si tus comidas llevan
+                            gaseosa, están listas para enfrentar lo que sea, elegila en tamaño regular, mediano o
+                            grande.
+                        </p>
+                        <br>
+                        <div>
+                            <h3>Informacion Nutricional</h3>
+                            <div style="text-align:center;">
+                                <table border="1" style="margin: 0 auto;">
+                                    <tr>
+                                        <td></td>
+                                        <td>Por producto</td>
+                                        <td>I.D.R. %</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Calorias</td>
+                                        <td>0kcal</td>
+                                        <td>0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Grasa total</td>
+                                        <td>0g</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carbohidratos</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Proteinas</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <button id="close13">Cerrar</button>
+                        </div>
+                    </div>
+
+                    <div id="modal_container14" class="modal-container">
+                        <div class="modal">
+                            <h2>Detalles del producto</h2>
+
+                            <img src="./gaseosas/gaseosaChica.jpg" />
+                            <p>Burbujas contra el calor, contra la sed, contra el aburrimiento. Si tus comidas llevan
+                                gaseosa, están listas para enfrentar lo que sea, elegila en tamaño regular, mediano o
+                                grande.
+                            </p>
+                            <br>
+                            <div>
+                                <h3>Informacion Nutricional</h3>
+                                <div style="text-align:center;">
+                                    <table border="1" style="margin: 0 auto;">
+                                        <tr>
+                                            <td></td>
+                                            <td>Por producto</td>
+                                            <td>I.D.R. %</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Calorias</td>
+                                            <td>110kcal</td>
+                                            <td>6%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Grasa total</td>
+                                            <td>1g</td>
+                                            <td>23%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Carbohidratos</td>
+                                            <td>1g</td>
+                                            <td>6%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Proteinas</td>
+                                            <td>0g</td>
+                                            <td>5%</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <button id="close14">Cerrar</button>
+                            </div>
+                        </div>
+
+                        <div id="modal_container15" class="modal-container">
+                            <div class="modal">
+                                <h2>Detalles del producto</h2>
+
+                                <img src="./gaseosas/gaseosaMediana.jpg" />
+                                <p>Burbujas contra el calor, contra la sed, contra el aburrimiento. Si tus comidas
+                                    llevan gaseosa, están listas para enfrentar lo que sea, elegila en tamaño regular,
+                                    mediano o grande.
+                                </p>
+                                <br>
+                                <div>
+                                    <h3>Informacion Nutricional</h3>
+                                    <div style="text-align:center;">
+                                        <table border="1" style="margin: 0 auto;">
+                                            <tr>
+                                                <td></td>
+                                                <td>Por producto</td>
+                                                <td>I.D.R. %</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Calorias</td>
+                                                <td>220kcal</td>
+                                                <td>13%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Grasa total</td>
+                                                <td>3g</td>
+                                                <td>52%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Carbohidratos</td>
+                                                <td>2g</td>
+                                                <td>6%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Proteinas</td>
+                                                <td>2,5g</td>
+                                                <td>16%</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <button id="close15">Cerrar</button>
+                                </div>
+                            </div>
+
+                            <div id="modal_container16" class="modal-container">
+                                <div class="modal">
+                                    <h2>Detalles del producto</h2>
+
+                                    <img src="./gaseosas/gaseosaGrande.jpg" />
+                                    <p>Burbujas contra el calor, contra la sed, contra el aburrimiento. Si tus comidas
+                                        llevan gaseosa, están listas para enfrentar lo que sea, elegila en tamaño
+                                        regular, mediano o grande.
+                                    </p>
+                                    <br>
+                                    <div>
+                                        <h3>Informacion Nutricional</h3>
+                                        <div style="text-align:center;">
+                                            <table border="1" style="margin: 0 auto;">
+                                                <tr>
+                                                    <td></td>
+                                                    <td>Por producto</td>
+                                                    <td>I.D.R. %</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>Calorias</td>
+                                                    <td>359kcal</td>
+                                                    <td>26%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Grasa total</td>
+                                                    <td>7g</td>
+                                                    <td>52%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Carbohidratos</td>
+                                                    <td>4g</td>
+                                                    <td>12%</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Proteinas</td>
+                                                    <td>5g</td>
+                                                    <td>38%</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <button id="close16">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!--Link a JS-->
+                            <script src="/main.js"></script>
+
+
+</body>
+
+</html>
