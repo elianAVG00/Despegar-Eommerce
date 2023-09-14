@@ -106,6 +106,7 @@ body{
     color: var(--text-color);
 }
 
+
 .container{
     max-width: 1068px;
     margin: auto;
@@ -135,7 +136,14 @@ header{
     font-size: 17px;
     font-weight: 400;
     color: white;
+    text-decoration: none;
 }
+
+ul{
+    margin-bottom: 0;
+}
+
+  
 
 .navigation a:hover{
     color: yellow;
