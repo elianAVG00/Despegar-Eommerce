@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "img": "brc.JPG",
+        "precio": 27508
+    },
+    {
+        "id": 2,
+        "img": "iguazu.jpg",
+        "precio": 26925
+    },
+    {
+        "id": 3,
+        "img": "salta.jpg",
+        "precio": 28992
+    },
+    {
+        "id": 4,
+        "img": "miami.jpg",
+        "precio": 383834
+    },
+    {
+        "id": 5,
+        "img": "cordoba.jpg",
+        "precio": 18997
+    },
+    {
+        "id": 6,
+        "img": "jujuy.jpg",
+        "precio": 27210
+    },
+    {
+        "id": 7,
+        "img": "rio.jpg",
+        "precio": 152434
+    },
+    {
+        "id": 8,
+        "img": "mendoza.jpg",
+        "precio": 22993
+    }
+]
