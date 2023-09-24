@@ -1,59 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Obtener elementos
-    let miInput0 = document.getElementById('Param_Origen');
-    let dropdownItemsOrigen = document.querySelectorAll('.origen');
+  // Obtener elementos
+  let inputDestino = document.getElementById('inputDestino');
+  let dropdownItemsDest = document.querySelectorAll('.dest');
 
-    let miInput1 = document.getElementById('Param_Destino');
-    let dropdownItemsDestino = document.querySelectorAll('.destino');
-     
-    let miInput2 = document.getElementById('Param_Fecha');
-    let dropdownItemsFecha = document.querySelectorAll('.fecha');
-    
-    let miInput3 = document.getElementById('Param_Numero_Pasajeros');
-    let dropdownItemsPasajeros = document.querySelectorAll('.pasajeros');
-    
-    let miInput4 = document.getElementById('Param_Categoria');
-    let dropdownItemsCategoria = document.querySelectorAll('.categoria');
+  let inputCat = document.getElementById('inputCat');
+  let dropdownItemsCat = document.querySelectorAll('.cat');
 
-    let miInput5 = document.getElementById('Param_Precio');
-    let dropdownItemsPrecio = document.querySelectorAll('.precio');
-    
-    // Agregar evento de clic a cada opción del menú desplegable
-    dropdownItemsOrigen.forEach(function(item) {
-      item.addEventListener('click', function() {
-        miInput0.value = item.textContent; // Establecer el valor del input
-      }); 
-    });
-    // Agregar evento de clic a cada opción del menú desplegable
-    dropdownItemsDestino.forEach(function(item) {
-      item.addEventListener('click', function() {
-        miInput1.value = item.textContent; // Establecer el valor del input
-      }); 
-    });
-    // Agregar evento de clic a cada opción del menú desplegable
-    dropdownItemsFecha.forEach(function(item) {
-      item.addEventListener('click', function() {
-        miInput2.value = item.textContent; // Establecer el valor del input
-      }); 
-    });
-    // Agregar evento de clic a cada opción del menú desplegable
-    dropdownItemsPasajeros.forEach(function(item) {
-      item.addEventListener('click', function() {
-        miInput3.value = item.textContent; // Establecer el valor del input
-      }); 
-    });
-    // Agregar evento de clic a cada opción del menú desplegable
-    dropdownItemsCategoria.forEach(function(item) {
-        item.addEventListener('click', function() {
-          miInput4.value = item.textContent; // Establecer el valor del input
-        });
-    });
-    // Agregar evento de clic a cada opción del menú desplegable
-    dropdownItemsPrecio.forEach(function(item) {
-      item.addEventListener('click', function() {
-        miInput5.value = item.textContent; // Establecer el valor del input
+  let inputPrice = document.getElementById('inputPrice');
+  let dropdownItemsPrice = document.querySelectorAll('.price');
+
+  // Agregar evento de clic a cada opción del menú desplegable
+  dropdownItemsDest.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      inputDestino.value = item.textContent; // Establecer el valor del input
+    }); 
+  });
+
+  // Agregar evento de clic a cada opción del menú desplegable
+  dropdownItemsCat.forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        inputCat.value = item.textContent; // Establecer el valor del input
       });
+  
+  });
+
+  // Agregar evento de clic a cada opción del menú desplegable
+  dropdownItemsPrice.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      inputPrice.value = item.textContent; // Establecer el valor del input
     });
 
 });
 
+});
