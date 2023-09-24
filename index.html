@@ -92,7 +92,8 @@
                           <input
                             type="text"
                             placeholder="Origen"
-                            class="home-textinput input"
+                            class="home-textinput input ancho1"
+                            id="inputOrigen"
                           />
                           <img width="0%"
                             alt="image"
@@ -100,8 +101,8 @@
                             class="home-icon"
                           />
                           <div class="input-group ancho1">
-                            <input type="text" class="form-control" id="miInput" placeholder="Destino">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <input type="text" class="form-control home-textinput3" id="inputDestino" placeholder="Destino">
+                            <button class="btn borde-sep dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <ul class="dropdown-menu" aria-labelledby="miInput">
                               <li><a class="dest dropdown-item" href="#">San Carlos de Bariloche</a></li>
                               <li><a class="dest dropdown-item" href="#">Puerto Iguazu</a></li>
@@ -113,22 +114,20 @@
                             </ul>
                           </div>
                           <input
-                            type="date"
-                            placeholder="Date"
+                            type="datetime-local"
                             class="home-textinput1 input"
                             id="inputFechaHora"
                             
                           />
                           <input
-                            id="Param_Numero_Pasajeros"
                             type="number"
                             placeholder="Pasajeros"
                             class="home-textinput2 input"
                             id="inputPasaj"
                           />
                           <div class="input-group ancho">
-                            <input type="text" class="form-control home-textinput3" id="miInput2" placeholder="Categoria" readonly>
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <input type="text" class="form-control home-textinput3" id="inputCat" placeholder="Categoria" readonly>
+                            <button class="btn borde-sep dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <ul class="dropdown-menu" aria-labelledby="miInput2">
                               <li><a class="cat dropdown-item" href="#">Primera Clase</a></li>
                               <li><a class="cat dropdown-item" href="#">Clase Ejecutiva</a></li>
@@ -137,8 +136,8 @@
                             </ul>
                           </div>
                           <div class="input-group ancho">
-                            <input type="text" class="form-control home-textinput3" id="miInput3" placeholder="Precio">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <input type="text" class="form-control home-textinput3" id="inputPrice" placeholder="Precio">
+                            <button class="btn borde-sep dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <ul class="dropdown-menu" aria-labelledby="miInput3">
                               <li><a class="price dropdown-item" href="#">$15000</a></li>
                               <li><a class="price dropdown-item" href="#">$30000</a></li>
