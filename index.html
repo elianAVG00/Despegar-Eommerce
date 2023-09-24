@@ -92,7 +92,8 @@
                           <input
                             type="text"
                             placeholder="Origen"
-                            class="home-textinput input"
+                            class="home-textinput input ancho1"
+                            id="inputOrigen"
                           />
                           <img width="0%"
                             alt="image"
@@ -100,8 +101,8 @@
                             class="home-icon"
                           />
                           <div class="input-group ancho1">
-                            <input type="text" class="form-control" id="miInput" placeholder="Destino">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <input type="text" class="form-control home-textinput3" id="inputDestino" placeholder="Destino">
+                            <button class="btn borde-sep dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <ul class="dropdown-menu" aria-labelledby="miInput">
                               <li><a class="dest dropdown-item" href="#">San Carlos de Bariloche</a></li>
                               <li><a class="dest dropdown-item" href="#">Puerto Iguazu</a></li>
@@ -113,18 +114,20 @@
                             </ul>
                           </div>
                           <input
-                            type="date"
-                            placeholder="Date"
+                            type="datetime-local"
                             class="home-textinput1 input"
+                            id="inputFechaHora"
+                            
                           />
                           <input
                             type="number"
                             placeholder="Pasajeros"
                             class="home-textinput2 input"
+                            id="inputPasaj"
                           />
                           <div class="input-group ancho">
-                            <input type="text" class="form-control home-textinput3" id="miInput2" placeholder="Categoria" readonly>
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <input type="text" class="form-control home-textinput3" id="inputCat" placeholder="Categoria" readonly>
+                            <button class="btn borde-sep dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <ul class="dropdown-menu" aria-labelledby="miInput2">
                               <li><a class="cat dropdown-item" href="#">Primera Clase</a></li>
                               <li><a class="cat dropdown-item" href="#">Clase Ejecutiva</a></li>
@@ -133,8 +136,8 @@
                             </ul>
                           </div>
                           <div class="input-group ancho">
-                            <input type="text" class="form-control home-textinput3" id="miInput3" placeholder="Precio">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <input type="text" class="form-control home-textinput3" id="inputPrice" placeholder="Precio">
+                            <button class="btn borde-sep dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <ul class="dropdown-menu" aria-labelledby="miInput3">
                               <li><a class="price dropdown-item" href="#">$15000</a></li>
                               <li><a class="price dropdown-item" href="#">$30000</a></li>
@@ -147,6 +150,7 @@
                           </div>
                           <div class="home-search">
                             <img
+                              id="search-vuelos"
                               alt="image"
                               src="./img/logos/search.svg"
                               class="home-icon"
@@ -155,6 +159,41 @@
                         </div>
                       </div>
                     </div>
+                    <div id="vuelos-disp" class="w-100">
+                      <h4 class="cart-title my-5">Vuelos Disponibles</h4>
+                      <table class="table table-dark mb-5" id="tabla">
+                        <thead>
+                          <tr>
+                            <th scope="col">Origen</th>
+                            <th scope="col">Destino</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Horario</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Accion</th>
+                          </tr>
+                        </thead>
+                        <tbody id="info-vuelos">
+                          <!-- <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr> -->
+                        </tbody>
+                      </table>
+                    </div>
+                    <div id="content-no-vuelos"></div>
                   </div>
                 </div>
               </section>
@@ -163,7 +202,9 @@
         
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js "></script>
     <script src="./js/nav.js"></script>
+    <script src="./js/filtrarVuelos.js"></script>
 </body>
 
 </html>
