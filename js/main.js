@@ -47,8 +47,6 @@ async function cargarDatosVuelos(){
   }
 }
 
-
-
 //Abre el carrito
 cartIcon.onclick = () =>{
     cart.classList.add("active")
@@ -63,9 +61,7 @@ closeCart.onclick = () =>{
 if(document.readyState == 'loading'){
     document.addEventListener('DOMContentLoaded', ready);
 }else{
-
     ready();
-
 }
 
 //Making Function
@@ -107,8 +103,6 @@ function buyButtonClicked(){
 
     updatetotal();
 }
-
-
 
 //Remover items desde carrito,esto es en icono del tacho de basura
 function removeCartItem(event){
@@ -168,7 +162,6 @@ cartShopBox.getElementsByClassName("cart-remove")[0].addEventListener("click",re
 cartShopBox.getElementsByClassName("cart-quantity")[0].addEventListener("change", quantityChanged);
 
 }
-
 
 //actualizar total
 function updatetotal(){

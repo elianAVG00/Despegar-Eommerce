@@ -89,43 +89,55 @@
                             src="./img/logos/location.svg"
                             class="home-icon"
                           />
-                          <input
-                            type="text"
-                            placeholder="Origen"
-                            class="home-textinput input"
-                          />
+                          <div class="input-group ancho1">
+                            <input type="text" class="form-control" id="Param_Origen" placeholder="Origen">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <ul class="dropdown-menu" aria-labelledby="Param_Origen">
+                              <li><a class="origen dropdown-item" href="#">Buenos Aires</a></li>
+                              <li><a class="origen dropdown-item" href="#">San Carlos de Bariloche</a></li>
+                              <li><a class="origen dropdown-item" href="#">Puerto Iguazu</a></li>
+                              <li><a class="origen dropdown-item" href="#">Salta</a></li>
+                              <li><a class="origen dropdown-item" href="#">Miami</a></li>
+                              <li><a class="origen dropdown-item" href="#">San Salvador de Jujuy</a></li>
+                              <li><a class="origen dropdown-item" href="#">Rio de Janeiro</a></li>
+                              <li><a class="origen dropdown-item" href="#">Mendoza</a></li>
+                            </ul>
+                          </div>
                           <img width="0%"
                             alt="image"
                             src="./img/logos/location.svg"
                             class="home-icon"
                           />
                           <div class="input-group ancho1">
-                            <input type="text" class="form-control" id="miInput" placeholder="Destino">
+                            <input type="text" class="form-control" id="Param_Destino" placeholder="Destino">
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                            <ul class="dropdown-menu" aria-labelledby="miInput">
-                              <li><a class="dest dropdown-item" href="#">San Carlos de Bariloche</a></li>
-                              <li><a class="dest dropdown-item" href="#">Puerto Iguazu</a></li>
-                              <li><a class="dest dropdown-item" href="#">Salta</a></li>
-                              <li><a class="dest dropdown-item" href="#">Miami</a></li>
-                              <li><a class="dest dropdown-item" href="#">San Salvador de Jujuy</a></li>
-                              <li><a class="dest dropdown-item" href="#">Rio de Janeiro</a></li>
-                              <li><a class="dest dropdown-item" href="#">Mendoza</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="Param_Destino">
+                              <li><a class="destino dropdown-item" href="#">Buenos Aires</a></li>
+                              <li><a class="destino dropdown-item" href="#">San Carlos de Bariloche</a></li>
+                              <li><a class="destino dropdown-item" href="#">Puerto Iguazu</a></li>
+                              <li><a class="destino dropdown-item" href="#">Salta</a></li>
+                              <li><a class="destino dropdown-item" href="#">Miami</a></li>
+                              <li><a class="destino dropdown-item" href="#">San Salvador de Jujuy</a></li>
+                              <li><a class="destino dropdown-item" href="#">Rio de Janeiro</a></li>
+                              <li><a class="destino dropdown-item" href="#">Mendoza</a></li>
                             </ul>
                           </div>
                           <input
+                            id="Param_Fecha"
                             type="date"
                             placeholder="Date"
                             class="home-textinput1 input"
                           />
                           <input
+                            id="Param_Numero_Pasajeros"
                             type="number"
                             placeholder="Pasajeros"
                             class="home-textinput2 input"
                           />
                           <div class="input-group ancho">
-                            <input type="text" class="form-control home-textinput3" id="miInput2" placeholder="Categoria" readonly>
+                            <input type="text" class="form-control home-textinput3" id="Param_Categoria" placeholder="Categoria" readonly>
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                            <ul class="dropdown-menu" aria-labelledby="miInput2">
+                            <ul class="dropdown-menu" aria-labelledby="Param_Categoria">
                               <li><a class="cat dropdown-item" href="#">Primera Clase</a></li>
                               <li><a class="cat dropdown-item" href="#">Clase Ejecutiva</a></li>
                               <li><a class="cat dropdown-item" href="#">Clase Premium Economy</a></li>
@@ -133,16 +145,16 @@
                             </ul>
                           </div>
                           <div class="input-group ancho">
-                            <input type="text" class="form-control home-textinput3" id="miInput3" placeholder="Precio">
+                            <input type="text" class="form-control home-textinput3" id="Param_Precio" placeholder="Precio">
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                            <ul class="dropdown-menu" aria-labelledby="miInput3">
-                              <li><a class="price dropdown-item" href="#">$15000</a></li>
-                              <li><a class="price dropdown-item" href="#">$30000</a></li>
-                              <li><a class="price dropdown-item" href="#">$60000</a></li>
-                              <li><a class="price dropdown-item" href="#">$100000</a></li>
-                              <li><a class="price dropdown-item" href="#">$200000</a></li>
-                              <li><a class="price dropdown-item" href="#">$300000</a></li>
-                              <li><a class="price dropdown-item" href="#">$400000</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="Param_Precio">
+                              <li><a class="precio dropdown-item" href="#">$15000</a></li>
+                              <li><a class="precio dropdown-item" href="#">$30000</a></li>
+                              <li><a class="precio dropdown-item" href="#">$60000</a></li>
+                              <li><a class="precio dropdown-item" href="#">$100000</a></li>
+                              <li><a class="precio dropdown-item" href="#">$200000</a></li>
+                              <li><a class="precio dropdown-item" href="#">$300000</a></li>
+                              <li><a class="precio dropdown-item" href="#">$400000</a></li>
                             </ul>
                           </div>
                           <div class="home-search">
