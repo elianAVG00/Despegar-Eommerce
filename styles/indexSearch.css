@@ -180,6 +180,12 @@
 .home-search:hover {
   opacity: 0.5;
 }
+
+.color-search{
+  background-color: #FAD87A;
+  color: #FAD87A;
+}
+
 .home-icon {
   width: 18px;
   object-fit: cover;

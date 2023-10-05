@@ -1,41 +1,49 @@
 [
     {
         "id": 1,
+        "destino": "San Carlos de Bariloche",
         "img": "brc.JPG",
         "precio": 27508
     },
     {
         "id": 2,
+        "destino": "Puerto Iguazu",
         "img": "iguazu.jpg",
         "precio": 26925
     },
     {
         "id": 3,
+        "destino": "Salta",
         "img": "salta.jpg",
         "precio": 28992
     },
     {
         "id": 4,
+        "destino": "Miami",
         "img": "miami.jpg",
         "precio": 383834
     },
     {
         "id": 5,
+        "destino": "SCordoba",
         "img": "cordoba.jpg",
         "precio": 18997
     },
     {
         "id": 6,
+        "destino": "San Salvador de Jujuy",
         "img": "jujuy.jpg",
         "precio": 27210
     },
     {
         "id": 7,
+        "destino": "Rio de Janeiro",
         "img": "rio.jpg",
         "precio": 152434
     },
     {
         "id": 8,
+        "destino": "Mendoza",
         "img": "mendoza.jpg",
         "precio": 22993
     }
