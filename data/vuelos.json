@@ -1,50 +1,242 @@
 [
     {
         "id": 1,
+        "origen": "Buenos Aires",
         "destino": "San Carlos de Bariloche",
+        "aeropuertoIda": "AEP-BRC",
+        "aeropuertoVuelta": "BRC-AEP",
         "img": "brc.JPG",
-        "precio": 27508
+        "precio": 27508,
+        "seccion": "principal"
     },
     {
         "id": 2,
+        "origen": "Buenos Aires",
         "destino": "Puerto Iguazu",
+        "aeropuertoIda": "AEP-IGR",
+        "aeropuertoVuelta": "IGR-AEP",
         "img": "iguazu.jpg",
-        "precio": 26925
+        "precio": 26925,
+        "seccion": "principal"
     },
     {
         "id": 3,
+        "origen": "Buenos Aires",
         "destino": "Salta",
+        "aeropuertoIda": "AEP-SLA",
+        "aeropuertoVuelta": "SLA-AEP",
         "img": "salta.jpg",
-        "precio": 28992
+        "precio": 28992,
+        "seccion": "principal"
     },
     {
         "id": 4,
+        "origen": "Buenos Aires",
         "destino": "Miami",
+        "aeropuertoIda": "AEP-MIA",
+        "aeropuertoVuelta": "MIA-AEP",
         "img": "miami.jpg",
-        "precio": 383834
+        "precio": 383834,
+        "seccion": "principal"
     },
     {
         "id": 5,
-        "destino": "SCordoba",
+        "origen": "Buenos Aires",
+        "destino": "Cordoba",
+        "aeropuertoIda": "AEP-COR",
+        "aeropuertoVuelta": "COR-AEP",
         "img": "cordoba.jpg",
-        "precio": 18997
+        "precio": 18997,
+        "seccion": "principal"
     },
     {
         "id": 6,
+        "origen": "Buenos Aires",
         "destino": "San Salvador de Jujuy",
+        "aeropuertoIda": "AEP-JUJ",
+        "aeropuertoVuelta": "JUJ-AEP",
         "img": "jujuy.jpg",
-        "precio": 27210
+        "precio": 27210,
+        "seccion": "principal"
     },
     {
         "id": 7,
+        "origen": "Buenos Aires",
         "destino": "Rio de Janeiro",
+        "aeropuertoIda": "AEP-RIO",
+        "aeropuertoVuelta": "RIO-AEP",
         "img": "rio.jpg",
-        "precio": 152434
+        "precio": 152434,
+        "seccion": "principal"
     },
     {
         "id": 8,
+        "origen": "Buenos Aires",
         "destino": "Mendoza",
+        "aeropuertoIda": "AEP-MDZ",
+        "aeropuertoVuelta": "MDZ-AEP",
         "img": "mendoza.jpg",
-        "precio": 22993
+        "precio": 22993,
+        "seccion": "principal"
+    },
+    {
+        "id": 9,
+        "origen": "Entre Rios",
+        "destino": "San Carlos de Bariloche",
+        "aeropuertoIda": "AEN-MDZ",
+        "aeropuertoVuelta": "MDZ-AEN",
+        "img": "brc.JPG",
+        "precio": 32508,
+        "seccion": "inicio"
+    },
+    {
+        "id": 10,
+        "origen": "Entre Rios",
+        "destino": "Puerto Iguazu",
+        "aeropuertoIda": "AEN-IGR",
+        "aeropuertoVuelta": "IGR-AEN",
+        "img": "iguazu.jpg",
+        "precio": 20925,
+        "seccion": "inicio"
+    },
+    {
+        "id": 11,
+        "origen": "Entre Rios",
+        "destino": "Salta",
+        "aeropuertoIda": "AEN-SLA",
+        "aeropuertoVuelta": "SLA-AEN",
+        "img": "salta.jpg",
+        "precio": 25992,
+        "seccion": "inicio"
+    },
+    {
+        "id": 12,
+        "origen": "Entre Rios",
+        "destino": "Miami",
+        "aeropuertoIda": "AEN-MIA",
+        "aeropuertoVuelta": "MIA-AEN",
+        "img": "miami.jpg",
+        "precio": 343834,
+        "seccion": "inicio"
+    },
+    {
+        "id": 13,
+        "origen": "Entre Rios",
+        "destino": "Cordoba",
+        "aeropuertoIda": "AEN-COR",
+        "aeropuertoVuelta": "COR-AEN",
+        "img": "cordoba.jpg",
+        "precio": 20997,
+        "seccion": "inicio"
+    },
+    {
+        "id": 14,
+        "origen": "Entre Rios",
+        "destino": "San Salvador de Jujuy",
+        "aeropuertoIda": "AEN-JUJ",
+        "aeropuertoVuelta": "JUJ-AEN",
+        "img": "jujuy.jpg",
+        "precio": 24210,
+        "seccion": "inicio"
+    },
+    {
+        "id": 15,
+        "origen": "Entre Rios",
+        "destino": "Rio de Janeiro",
+        "aeropuertoIda": "AEN-RIO",
+        "aeropuertoVuelta": "RIO-AEN",
+        "img": "rio.jpg",
+        "precio": 122434,
+        "seccion": "inicio"
+    },
+    {
+        "id": 16,
+        "origen": "Entre Rios",
+        "destino": "Mendoza",
+        "aeropuertoIda": "AEN-MDZ",
+        "aeropuertoVuelta": "MDZ-AEN",
+        "img": "mendoza.jpg",
+        "precio": 26993,
+        "seccion": "inicio"
+    },
+    {
+        "id": 17,
+        "origen": "Santa Fe",
+        "destino": "San Carlos de Bariloche",
+        "aeropuertoIda": "ASF-MDZ",
+        "aeropuertoVuelta": "MDZ-ASF",
+        "img": "brc.JPG",
+        "precio": 30508,
+        "seccion": "inicio"
+    },
+    {
+        "id": 18,
+        "origen": "Santa Fe",
+        "destino": "Puerto Iguazu",
+        "aeropuertoIda": "ASF-IGR",
+        "aeropuertoVuelta": "IGR-ASF",
+        "img": "iguazu.jpg",
+        "precio": 22925,
+        "seccion": "inicio"
+    },
+    {
+        "id": 19,
+        "origen": "Santa Fe",
+        "destino": "Salta",
+        "aeropuertoIda": "ASF-SLA",
+        "aeropuertoVuelta": "SLA-ASF",
+        "img": "salta.jpg",
+        "precio": 24992,
+        "seccion": "inicio"
+    },
+    {
+        "id": 20,
+        "origen": "Santa Fe",
+        "destino": "Miami",
+        "aeropuertoIda": "ASF-MIA",
+        "aeropuertoVuelta": "MIA-ASF",
+        "img": "miami.jpg",
+        "precio": 323834,
+        "seccion": "inicio"
+    },
+    {
+        "id": 21,
+        "origen": "Santa Fe",
+        "destino": "Cordoba",
+        "aeropuertoIda": "ASF-COR",
+        "aeropuertoVuelta": "COR-ASF",
+        "img": "cordoba.jpg",
+        "precio": 12997,
+        "seccion": "inicio"
+    },
+    {
+        "id": 22,
+        "origen": "Santa Fe",
+        "destino": "San Salvador de Jujuy",
+        "aeropuertoIda": "ASF-JUJ",
+        "aeropuertoVuelta": "JUJ-ASF",
+        "img": "jujuy.jpg",
+        "precio": 23210,
+        "seccion": "inicio"
+    },
+    {
+        "id": 23,
+        "origen": "Santa Fe",
+        "destino": "Rio de Janeiro",
+        "aeropuertoIda": "ASF-RIO",
+        "aeropuertoVuelta": "RIO-ASF",
+        "img": "rio.jpg",
+        "precio": 132434,
+        "seccion": "inicio"
+    },
+    {
+        "id": 24,
+        "origen": "Santa Fe",
+        "destino": "Mendoza",
+        "aeropuertoIda": "ASF-MDZ",
+        "aeropuertoVuelta": "MDZ-ASF",
+        "img": "mendoza.jpg",
+        "precio": 24993,
+        "seccion": "inicio"
     }
 ]

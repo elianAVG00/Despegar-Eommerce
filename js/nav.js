@@ -1,49 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Obtener elementos
-  let inputDestino = document.getElementById('inputDestino');
-  let dropdownItemsDest = document.querySelectorAll('.dest');
-
-  let inputCat = document.getElementById('inputCat');
-  let dropdownItemsCat = document.querySelectorAll('.cat');
-
-  let inputPrice = document.getElementById('inputPrice');
-  let dropdownItemsPrice = document.querySelectorAll('.price');
-
-  let inputHorario = document.getElementById('inputHorario');
-  let dropdownItemsHorario = document.querySelectorAll('.hor');
-
-  // Agregar evento de clic a cada opción del menú desplegable
-  dropdownItemsDest.forEach(function(item) {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      inputDestino.value = item.textContent; // Establecer el valor del input
-    }); 
-  });
-
-  // Agregar evento de clic a cada opción del menú desplegable
-  dropdownItemsCat.forEach(function(item) {
-      item.addEventListener('click', function(e) {
-        e.preventDefault();
-        inputCat.value = item.textContent; // Establecer el valor del input
-      });
   
-  });
+  // Obtén una referencia al elemento <select> en el HTML
+  let dropdownOrigen = document.getElementById("dropdownOrigen");
+  let dropdownDestino = document.getElementById("dropdownDestino");
+  let dropdownCategoria = document.getElementById("dropdownCategoria");
+  let dropdownPrecio = document.getElementById("dropdownPrecio");
+  let dropdownHorario = document.getElementById("dropdownHorario");
 
-   // Agregar evento de clic a cada opción del menú desplegable
-   dropdownItemsPrice.forEach(function(item) {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      inputPrice.value = item.textContent; // Establecer el valor del input
+  let origenes = ["Origen", "Buenos Aires", "Entre Rios", "Santa Fe"];
+
+  // Creo un arreglo de destino que deseas agregar al select de manera dinámica
+  let destinos = ["Destino", "San Carlos de Bariloche", "Puerto Iguazu", "Salta", 
+                  "Miami", "San Salvador de Jujuy", "Rio de Janeiro", "Mendoza"];
+  
+  let categorias = ["Categoria", "Primera Clase", "Clase Ejecutiva", "Clase Premium Economy", "Clase Turista"];
+
+  let precios = ["Precio", "$15000", "$30000", "$60000", "$100000", "$200000", "$300000", "$400000"];
+  
+  let horarios = ["Horario", "08:00hs", "11:00hs", "14:00hs", "17:00hs", "20:00hs", "23:00hs"];
+
+  function selectDropdown(arr, drop){
+    // Itera a través del arreglo de valores y crea una <option> para cada uno
+      for (let i = 0; i < arr.length; i++) {
+        let opcion = document.createElement("option");
+        opcion.text = arr[i];
+        opcion.value = arr[i];
+        if(i == 0){
+          opcion.setAttribute("disabled", true);
+          opcion.setAttribute("selected", true);
+        }
+        drop.appendChild(opcion);
+      }
+
+      // Ahora, puedes agregar un evento para manejar la selección de opciones, por ejemplo:
+      drop.addEventListener("change", function() {
+          let seleccion = drop.options[drop.selectedIndex].value;
+          // console.log(seleccion);
       });
-    });
 
-  // Agregar evento de clic a cada opción del menú desplegable
-  dropdownItemsHorario.forEach(function(item) {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      inputHorario.value = item.textContent; // Establecer el valor del input
-    });
+  }
 
-  });
+  selectDropdown(origenes, dropdownOrigen);
+  selectDropdown(destinos, dropdownDestino);
+  selectDropdown(categorias, dropdownCategoria);
+  selectDropdown(precios, dropdownPrecio);
+  selectDropdown(horarios, dropdownHorario);
+
+  
 
 });
+
+

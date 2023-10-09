@@ -8,7 +8,7 @@ let close;
 
 let shop_menu = document.getElementById("shop-menu")
 
-async function cargarDatosVuelos(){
+async function cargarVuelosPrincipales(){
   try {
       const response = await fetch("../data/vuelos.json");
       if (!response.ok) {
@@ -16,30 +16,32 @@ async function cargarDatosVuelos(){
       }
       let dataVuelos = await response.json();
       dataVuelos.forEach(vuelo => {
-        const vueloDiv = document.createElement('div');
-        vueloDiv.classList.add("product-box");
-        vueloDiv.innerHTML+= `
-                              <img src="../img/vuelos/${vuelo.img}" alt="" class="product-img">
-                              <button id="open${vuelo.id}">Ver Más</button>
-                              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                              <span class="price">$${vuelo.precio}</span>
-                              <i class='bx bx-shopping-bag add-cart'></i>
-          `
-        shop_menu.appendChild(vueloDiv);
+        if(vuelo.seccion == "principal"){
+            const vueloDiv = document.createElement('div');
+            vueloDiv.classList.add("product-box");
+            vueloDiv.innerHTML+= `
+                                <img src="../img/vuelos/${vuelo.img}" alt="" class="product-img">
+                                <button id="open${vuelo.id}">Ver Más</button>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <span class="price">$${vuelo.precio}</span>
+                                <i class='bx bx-shopping-bag add-cart'></i>
+            `
+            shop_menu.appendChild(vueloDiv);
 
-        open = document.getElementById(`open${vuelo.id}`);
+            open = document.getElementById(`open${vuelo.id}`);
 
-        //Manejo la apertura y cierre del modal
-        open.addEventListener('click', (e) => {
-          let cadena = e.target.id;
-          let ultimo_caracter_o = cadena.charAt(cadena.length - 1);
-          let modal_container = document.getElementById(`modal_container${ultimo_caracter_o}`);
-          modal_container.classList.add('show');
-          close = document.getElementById(`close${ultimo_caracter_o}`)
-          close.addEventListener('click', () => {
-            modal_container.classList.remove('show');
-          });
-        });
+            //Manejo la apertura y cierre del modal
+            open.addEventListener('click', (e) => {
+            let cadena = e.target.id;
+            let ultimo_caracter_o = cadena.charAt(cadena.length - 1);
+            let modal_container = document.getElementById(`modal_container${ultimo_caracter_o}`);
+            modal_container.classList.add('show');
+            close = document.getElementById(`close${ultimo_caracter_o}`)
+            close.addEventListener('click', () => {
+                modal_container.classList.remove('show');
+            });
+            });
+        }
     });
 
   } catch (error) {
@@ -251,5 +253,5 @@ async function cargarDetalles(){
 }
 
 cargarDetalles();
-cargarDatosVuelos();
+cargarVuelosPrincipales();
 
