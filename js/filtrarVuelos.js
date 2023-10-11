@@ -437,6 +437,9 @@ function mostrarDatos(datos = '') {
                                 <button class="btn btn-success">Agregar al carrito</button>
                             </td>
         `
+        document.cookie = "origen: " + origen + ",destino: " + destino + ",aeropuertoIda: " + aeropuertoIda + ",aeropuertoVuelta: " + aeropuertoVuelta
+            + ",fecha: " + fecha + ",categoria: " + categoria + ",precio: " + precio + ",horario: " + horario;
+        console.log(document.cookie);
         info.appendChild(vueloTr);
 
         
