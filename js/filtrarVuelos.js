@@ -537,8 +537,8 @@ function mostrarDatos(datos = '', pagina) {
                                 Agregar al carrito</button>
                             </td>
         `
-        document.cookie = "origen: " + origen + ",destino: " + destino + ",aeropuertoIda: " + aeropuertoIda + ",aeropuertoVuelta: " + aeropuertoVuelta
-            + ",fecha: " + fecha + ",categoria: " + categoria + ",precio: " + precio + ",horario: " + horario;
+        // document.cookie = "origen: " + origen + ",destino: " + destino + ",aeropuertoIda: " + aeropuertoIda + ",aeropuertoVuelta: " + aeropuertoVuelta
+        //     + ",fecha: " + fecha + ",categoria: " + categoria + ",precio: " + precio + ",horario: " + horario;
         // console.log(document.cookie);
         info.appendChild(vueloTr);
 

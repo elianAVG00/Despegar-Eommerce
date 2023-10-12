@@ -7,6 +7,15 @@ let carrito = [];
 // let op;
 // let clos;
 
+// if (Cookies.get('miCookie')) {
+//     // Hacer algo con los datos de la cookie
+//     carrito = JSON.parse(Cookies.get('miCookie'));
+//   } else {
+//     // No hagas nada o realiza una acción alternativa
+//     Cookies.set('carrito', JSON.stringify(carrito),{ expires: 7, path: '' });
+//   }
+
+
 function obtenerCarrito() {
     carrito = Cookies.get('carrito');
     return carrito ? JSON.parse(carrito) : [];
@@ -40,6 +49,8 @@ function ready(){
     console.log(reomveCartButtons);
     for(let i = 0; i < reomveCartButtons.length; i++){
         let button = reomveCartButtons[i];
+        // let indice = 
+        // console.log(reomveCartButtons.id.value);
         button.addEventListener('click', removeCartItem);
     }
 
@@ -79,7 +90,15 @@ function buyButtonClicked(){
 //Remover items desde carrito,esto es en icono del tacho de basura
 function removeCartItem(event){
     let buttonClicked = event.target;
+    // let index = i;
+    let indice = buttonClicked.id;
+    carrito = obtenerCarrito();
+    carrito.splice(indice, 1);
+    Cookies.set('carrito', JSON.stringify(carrito));
     buttonClicked.parentElement.remove();
+    // carrito.forEach((element, index) => {
+        
+    // });
     updatetotal();
 }
 
@@ -136,7 +155,7 @@ function addProductToCart(carrit){
     
     // }
 
-    carrit.forEach(element => {
+    carrit.forEach((element, index) => {
         const {origen, destino, ida, vuelta, fecha, categoria, precio, horario } = element
         let cartBoxContent = `
                             <div class="detail-box">
@@ -149,7 +168,7 @@ function addProductToCart(carrit){
                             <input type="number" value="1" class="cart-quantity">
                         </div>
                         <!--Remove Cart-->
-                        <i class='bx bxs-trash-alt cart-remove'></i>`;
+                        <i class='bx bxs-trash-alt cart-remove' id="${index}"></i>`;
 
 
         cartShopBox.innerHTML = cartBoxContent;
@@ -186,6 +205,8 @@ function updatetotal(){
 
 function vaciarCarrito(){
     Cookies.remove('carrito');
-    window.location.reload();
+    console.log(JSON.parse(Cookies.get('miCookie')));
+    // Cookies.set('carrito', JSON.stringify(carrito),{ expires: 7, path: '' });
+    // window.location.reload();
 }
 
