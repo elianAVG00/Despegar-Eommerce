@@ -42,7 +42,7 @@
             <i class='bx bx-shopping-bag' id="cart-icon"></i>
             <!--Cart-->
             <div class="cart">
-                <h2 class="cart-title">Tus Pedidos</h2>
+                <h2 class="cart-title">Tus Reservas</h2>
                 <!--Content-->
                 <div class="cart-content">
 
@@ -73,6 +73,7 @@
 
               <!--Buy Button-->
               <button type="button" class="btn-buy">Finalizar Compra</button>
+              <button type="button" onclick="vaciarCarrito()" class="btn btn-primary">Vaciar Carrito</button>
               <!--Cart Close-->
               <i class='bx bx-x' id="close-cart"></i>
 
@@ -148,6 +149,7 @@
                         </div>
                       </form>
                     </div>
+                    
                     <div id="vuelos-disp" class="w-100">
                       <h4 class="cart-title my-5">Vuelos Disponibles</h4>
                       <table class="table table-dark mb-5" id="tabla">
@@ -184,14 +186,16 @@
             </div>
           </div>
         
-    <script src="./js/formEmail.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src=" https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js "></script>
     <script src="./js/nav.js"></script>
     <script src="./js/filtrarVuelos.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/formEmail.js"></script>
 </body>
 
 </html>

@@ -2,29 +2,26 @@ let info = document.getElementById("info-vuelos");
 let search = document.getElementById("search-vuelos");
 let tabla = document.getElementById("tabla");
 let vuelos_disp = document.getElementById("vuelos-disp");
+let paginacion = document.getElementById("paginacion");
 // let pasajeros = document.getElementById("inputPasaj");
 // Obtén una referencia al elemento <select> en el HTML
-let dropdownOrigen = document.getElementById("dropdownOrigen");
-let dropdownDestino = document.getElementById("dropdownDestino");
-let dropdownCategoria = document.getElementById("dropdownCategoria");
-let dropdownPrecio = document.getElementById("dropdownPrecio");
-let dropdownHorario = document.getElementById("dropdownHorario");
+let origen = document.getElementById("dropdownOrigen");
+let destino = document.getElementById("dropdownDestino");
+let categoria = document.getElementById("dropdownCategoria");
+let precio = document.getElementById("dropdownPrecio");
+let horario = document.getElementById("dropdownHorario");
 let form = document.getElementById("formVuelo");
 let fecha = document.getElementById("inputFecha");
 let no_vuelos = document.getElementById("content-no-vuelos");
 let arrPrecio;
-let arrOrigen;
-let arrDestino;
 let arrHorario;
-let arrFecha;
-let filtroAll;
+let arrValoresForm = [];
+let nuevoPrecio;
+let cat;
+let parametro;
 // Configurar Luxon en español
 luxon.Settings.defaultLocale = 'es';
-let arrayFinal = [];
-let arrayODFCP = [];
-let arrayODFC = [];
-let arrayODF = [];
-let arrayOD = [];
+
 
 
  
@@ -33,121 +30,170 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log(e.target);
     let dataForm = new FormData(e.target);
-    if ((dropdownOrigen.value === 'Origen') && (dropdownDestino.value === 'Destino') && 
+    if ((origen.value === 'Origen') && (destino.value === 'Destino') && 
         (dataForm.get('fecha') === "") &&  
-        (dropdownCategoria.value === 'Categoria') && (dropdownPrecio.value === 'Precio')
-        && (dropdownHorario.value === 'Horario')) {
+        (categoria.value === 'Categoria') && (precio.value === 'Precio')
+        && (horario.value === 'Horario')) {
         Swal.fire({
             type: 'error',
             text: 'Ingrese todos los campos requeridos',
             showConfirmButton: true
         })
     }
-    else if ((dropdownOrigen.value !== 'Origen') && (dropdownDestino.value !== 'Destino') && 
+    else if ((origen.value !== 'Origen') && (destino.value !== 'Destino') && 
         (dataForm.get('fecha') !== "") &&  
-        (dropdownCategoria.value !== 'Categoria') && (dropdownPrecio.value !== 'Precio')
-        && (dropdownHorario.value !== 'Horario')){
-            let nuevoOrigen = dropdownOrigen.value;
-            let nuevoDestino = dropdownDestino.value;
-            let nuevoPrecio;
-            if(dropdownPrecio.value == "Precio"){
-                nuevoPrecio = dropdownPrecio.value;
-            }
-            else{
-                nuevoPrecio = Number(dropdownPrecio.value.substring(1));
-            }
-
-            let nuevoCategoria = dropdownCategoria.value;
-            let nuevoHorario = dropdownHorario.value;
-            let nuevaFecha = dataForm.get('fecha');
-            let cat = "Completo";
-            arrayFinal.push(nuevoOrigen, nuevoDestino, nuevaFecha, nuevoCategoria, nuevoPrecio,
-                nuevoHorario);
-            console.log(arrayFinal);
-            cargarVuelosGenerales(arrayFinal, cat);
-
+        (categoria.value !== 'Categoria') && (precio.value !== 'Precio')
+        && (horario.value !== 'Horario')){
+            nuevoPrecio = Number(precio.value.substring(1));
+            arrValoresForm.splice(0, arrValoresForm.length);
+            cat = "Completo";
+            arrValoresForm.push(origen.value, destino.value, dataForm.get('fecha'),
+                categoria.value, nuevoPrecio, horario.value);
+            console.log(arrValoresForm);
+            cargarVuelosGenerales(arrValoresForm, cat);
     }
-    else if((dropdownOrigen.value !== 'Origen') && (dropdownDestino.value !== 'Destino') && 
+    else if((origen.value !== 'Origen') && (destino.value !== 'Destino') && 
             (dataForm.get('fecha') !== "") &&  
-            (dropdownCategoria.value !== 'Categoria') && (dropdownPrecio.value !== 'Precio')){
-            let nuevoOrigen = dropdownOrigen.value;
-            let nuevoDestino = dropdownDestino.value;
-            let nuevoPrecio;
-            if(dropdownPrecio.value == "Precio"){
-                nuevoPrecio = dropdownPrecio.value;
-            }
-            else{
-                nuevoPrecio = Number(dropdownPrecio.value.substring(1));
-            }
-
-            let nuevoCategoria = dropdownCategoria.value;
-            let nuevaFecha = dataForm.get('fecha');
-            let cat = "ODFCP";
-            arrayODFCP.push(nuevoOrigen, nuevoDestino, nuevaFecha, nuevoCategoria, nuevoPrecio);
-            cargarVuelosGenerales(arrayODFCP, cat);
+            (categoria.value !== 'Categoria') && (precio.value !== 'Precio')){
+            nuevoPrecio = Number(precio.value.substring(1));
+            arrValoresForm.splice(0, arrValoresForm.length);
+            cat = "ODFCP";
+            arrValoresForm.push(origen.value, destino.value, dataForm.get('fecha'),
+                categoria.value, nuevoPrecio);
+            cargarVuelosGenerales(arrValoresForm, cat);
     }
-    else if((dropdownOrigen.value !== 'Origen') && (dropdownDestino.value !== 'Destino') && 
+    else if((origen.value !== 'Origen') && (destino.value !== 'Destino') && 
             (dataForm.get('fecha') !== "") &&  
-            (dropdownCategoria.value !== 'Categoria')){
-            let nuevoOrigen = dropdownOrigen.value;
-            let nuevoDestino = dropdownDestino.value;
-            let nuevoCategoria = dropdownCategoria.value;
-            let nuevaFecha = dataForm.get('fecha');
-            let cat = "ODFC";
-            arrayODFC.push(nuevoOrigen, nuevoDestino, nuevaFecha, nuevoCategoria);
-            cargarVuelosGenerales(arrayODFC, cat);
-            
+            (categoria.value !== 'Categoria')){
+            arrValoresForm.splice(0, arrValoresForm.length);
+            cat = "ODFC";
+            arrValoresForm.push(origen.value, destino.value, dataForm.get('fecha'),
+                categoria.value);
+            cargarVuelosGenerales(arrValoresForm, cat);     
     }
-    else if((dropdownOrigen.value !== 'Origen') && (dropdownDestino.value !== 'Destino') && 
+    else if((origen.value !== 'Origen') && (destino.value !== 'Destino') && 
             (dataForm.get('fecha') !== "")){
-            let nuevoOrigen = dropdownOrigen.value;
-            let nuevoDestino = dropdownDestino.value;
-            let nuevaFecha = dataForm.get('fecha');
-            let cat = "ODF";
-            arrayODF.push(nuevoOrigen, nuevoDestino, nuevaFecha);
-            cargarVuelosGenerales(arrayODF, cat);
-            
+            arrValoresForm.splice(0, arrValoresForm.length);
+            cat = "ODF";
+            arrValoresForm.push(origen.value, destino.value, dataForm.get('fecha'));
+            cargarVuelosGenerales(arrValoresForm, cat);      
     }
-    else if((dropdownOrigen.value !== 'Origen') && (dropdownDestino.value !== 'Destino')){
-        let nuevoOrigen = dropdownOrigen.value;
-        let nuevoDestino = dropdownDestino.value;
-        let cat = "OD";
-        arrayOD.push(nuevoOrigen, nuevoDestino);
-        cargarVuelosGenerales(arrayOD, cat);
+    else if((origen.value !== 'Origen') && (destino.value !== 'Destino')){
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "OD";
+        arrValoresForm.push(origen.value, destino.value);
+        cargarVuelosGenerales(arrValoresForm, cat);
     }
-    else if(dropdownOrigen.value !== 'Origen'){
-        let nuevoOrigen = dropdownOrigen.value;
-        let cat = "Origen";
-        cargarVuelosGenerales(nuevoOrigen, cat);
+    else if((destino.value !== 'Destino') && (dataForm.get('fecha') !== "") &&  
+    (categoria.value !== 'Categoria') && (precio.value !== 'Precio') && 
+    (horario.value !== 'Horario')){
+        nuevoPrecio = Number(precio.value.substring(1));
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "DFCPH";
+        arrValoresForm.push(destino.value, dataForm.get('fecha'),
+        categoria.value, nuevoPrecio, horario.value);
+        cargarVuelosGenerales(arrValoresForm, cat);
     }
-    else if(dropdownDestino.value !== 'Destino'){
-        let nuevoDestino = dropdownDestino.value;
-        let cat = "Destino";
-        cargarVuelosGenerales(nuevoDestino, cat);
+    else if ( (dataForm.get('fecha') !== "") &&  
+    (categoria.value !== 'Categoria') && (precio.value !== 'Precio')
+    && (horario.value !== 'Horario')){
+        nuevoPrecio = Number(precio.value.substring(1));
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "FCPH";
+        arrValoresForm.push(dataForm.get('fecha'), categoria.value, nuevoPrecio, horario.value);
+        cargarVuelosGenerales(arrValoresForm, cat);
     }
-    else if(dropdownPrecio.value !== 'Precio'){
-        let nuevoPrecio = Number(dropdownPrecio.value.substring(1));
-        let cat = "Precio";
+    else if ((categoria.value !== 'Categoria') && (precio.value !== 'Precio')
+    && (horario.value !== 'Horario')){
+        nuevoPrecio = Number(precio.value.substring(1));
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "CPH";
+        arrValoresForm.push(categoria.value, nuevoPrecio, horario.value);
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if ((precio.value !== 'Precio') && (horario.value !== 'Horario')){
+        nuevoPrecio = Number(precio.value.substring(1));
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "PH";
+        arrValoresForm.push(nuevoPrecio, horario.value);
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if ((destino.value !== 'Destino') && (dataForm.get('fecha') !== "") &&  
+    (categoria.value !== 'Categoria') && (precio.value !== 'Precio')){
+        nuevoPrecio = Number(precio.value.substring(1));
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "DFCP";
+        arrValoresForm.push(destino.value, dataForm.get('fecha'),
+        categoria.value, nuevoPrecio);
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if ((dataForm.get('fecha') !== "") &&  
+    (categoria.value !== 'Categoria') && (precio.value !== 'Precio')){
+        nuevoPrecio = Number(precio.value.substring(1));
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "FCP";
+        arrValoresForm.push(dataForm.get('fecha'), categoria.value, nuevoPrecio);
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if ((categoria.value !== 'Categoria') && (precio.value !== 'Precio')){
+        nuevoPrecio = Number(precio.value.substring(1));
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "CP";
+        arrValoresForm.push(categoria.value, nuevoPrecio);
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if ((destino.value !== 'Destino') && (dataForm.get('fecha') !== "") &&  
+    (categoria.value !== 'Categoria')){
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "DFC";
+        arrValoresForm.push(destino.value, dataForm.get('fecha'), categoria.value);
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if ((categoria.value !== 'Categoria') && (horario.value !== 'Horario')){
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "CH";
+        arrValoresForm.push(categoria.value, horario.value);
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if ((destino.value !== 'Destino') && (horario.value !== 'Horario')){
+        arrValoresForm.splice(0, arrValoresForm.length);
+        cat = "DH";
+        arrValoresForm.push((destino.value, horario.value));
+        cargarVuelosGenerales(arrValoresForm, cat);
+    }
+    else if(origen.value !== 'Origen'){
+        cat = "Origen";
+        cargarVuelosGenerales(origen.value, cat);
+    }
+    else if(destino.value !== 'Destino'){
+        cat = "Destino";
+        cargarVuelosGenerales(destino.value, cat);
+    }
+    else if(dataForm.get('fecha') !== ''){
+        console.log(dataForm.get('fecha')); 
+        cat = "Fecha";
+        cargarVuelosGenerales(dataForm.get('fecha'), cat);
+    }
+    else if(precio.value !== 'Precio'){
+        nuevoPrecio = Number(precio.value.substring(1));
+        cat = "Precio";
         cargarVuelosGenerales(nuevoPrecio, cat);
     }
-    else if(dropdownCategoria.value !== 'Categoria'){
-        let nuevoCategoria = dropdownCategoria.value;
-        let cat = "Categoria";
-        cargarVuelosGenerales(nuevoCategoria, cat);
+    else if(categoria.value !== 'Categoria'){
+        cat = "Categoria";
+        cargarVuelosGenerales(categoria.value, cat);
     }
-    else if(dropdownHorario.value !== 'Horario'){
-        let nuevoHorario = dropdownHorario.value;
-        let cat = "Horario";
-        cargarVuelosGenerales(nuevoHorario, cat);
+    else if(horario.value !== 'Horario'){
+        cat = "Horario";
+        cargarVuelosGenerales(horario.value, cat);
     }
-    else if(dropdownHorario.value !== ''){
-        console.log(dataForm.get('fecha')); 
-        let cat = "Fecha";
-        cargarVuelosGenerales(dataForm.get('fecha'), cat);
+    else{
+        console.log("No hay mas filtros");
     }
     
     form.reset(); 
 });
+
 
 
 
@@ -197,6 +243,66 @@ function filtrarPorODFCP(arr, param){
     return filtAll;
 }
 
+function filtrarPorDFCPH(arr, param){
+    const [paramD, paramF, paramC, paramP, paramH] = param;
+    let filtAll = arr.filter(el => (el.destino == paramD) && (el.categoria == paramC) 
+                                && (el.precio <= paramP) && (el.horario == paramH));
+    return filtAll;
+}
+
+function filtrarPorFCPH(arr, param){
+    const [paramF, paramC, paramP, paramH] = param;
+    let filtAll = arr.filter(el => (el.categoria == paramC) 
+                                && (el.precio <= paramP) && (el.horario == paramH));
+    return filtAll;
+}
+
+function filtrarPorCPH(arr, param){
+    const [paramC, paramP, paramH] = param;
+    let filtAll = arr.filter(el => (el.categoria == paramC) 
+                                && (el.precio <= paramP) && (el.horario == paramH));
+    return filtAll;
+}
+
+function filtrarPorPH(arr, param){
+    const [paramP, paramH] = param;
+    let filtAll = arr.filter(el => (el.precio <= paramP) && (el.horario == paramH));
+    return filtAll;
+}
+
+function filtrarPorDFCP(arr, param){
+    const [paramD, paramF, paramC, paramP] = param;
+    let filtAll = arr.filter(el => (el.destino == paramD)  
+                                && (el.categoria == paramC) && (el.precio <= paramP));
+    return filtAll;
+}
+
+function filtrarPorFCP(arr, param){
+    const [paramF, paramC, paramP] = param;
+    let filtAll = arr.filter(el => (el.categoria == paramC) && (el.precio <= paramP));
+    return filtAll;
+}
+
+function filtrarPorCP(arr, param){
+    const [paramC, paramP] = param;
+    let filtAll = arr.filter(el => (el.categoria == paramC) && (el.precio <= paramP));
+    return filtAll;
+}
+
+function filtrarPorDFC(arr, param){
+    const [paramD, paramF, paramC] = param;
+    let filtAll = arr.filter(el => (el.destino == paramD) && (el.categoria == paramC));
+    return filtAll;
+}
+
+
+function filtrarPorCH(arr, param){
+    const [paramC, paramH] = param;
+    let filtAll = arr.filter(el => (el.categoria == paramC) && (el.horario == paramH));
+    return filtAll;
+}
+
+
 function filtrarPorTodo(arr, param){
     const [paramO, paramD, paramF, paramC, paramP, paramH] = param;
     let filtAll = arr.filter(el => (el.origen == paramO) && (el.destino == paramD)  
@@ -211,81 +317,69 @@ function cargarFiltro(arr, param, cate){
     const fechaActual = luxon.DateTime.now();
     // Formatear la fecha en el formato deseado (aaaa-mm-dd)
     const fechaFormateada = fechaActual.toFormat('yyyy-MM-dd');
+    if(Array.isArray(param)){
+        parametro = param;
+    }
     switch (cate) {
         case "Origen":
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, fechaFormateada);
-            return filtrarPorOrigen(arrFecha, param);
+            return filtrarPorOrigen(cargarDatosPHF(fechaFormateada, arr), param);
             break;
         case "Destino":
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, fechaFormateada);
-            return filtrarPorDestino(arrFecha, param);
+            return filtrarPorDestino(cargarDatosPHF(fechaFormateada, arr), param);
             break;
         case "Categoria":
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, fechaFormateada);
-            return filtrarPorCategoria(arrFecha, param);
+            return filtrarPorCategoria(cargarDatosPHF(fechaFormateada, arr), param);
             break;
         case "Precio":
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, fechaFormateada);
-            return filtrarPorPrecio(arrFecha, param);
+            return filtrarPorPrecio(cargarDatosPHF(fechaFormateada, arr), param);
             break;
         case "Horario":
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, fechaFormateada);
-            return filtrarPorHorario(arrFecha, param);
+            return filtrarPorHorario(cargarDatosPHF(fechaFormateada, arr), param);
             break;
         case "Fecha":
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            return aplicarFecha(arrHorario , param);
+            return cargarDatosPHF(param, arr);
             break;
         case "OD":
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, fechaFormateada);
-            return filtrarPorOD(arrFecha, param)
+            return filtrarPorOD(cargarDatosPHF(fechaFormateada, arr), parametro);
             break;
         case "ODF":
-            let [paramOr, paramDe, paramFe] = param;
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, paramFe);
-            return filtrarPorOD(arrFecha, param);
+            return filtrarPorOD(cargarDatosPHF(parametro[2], arr), parametro);
             break;
         case "ODFC":
-            let [paramOri, paramDes, paramFec, paramCat] = param;
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, paramFec);
-            return filtrarPorODFC(arrFecha, param);
+            return filtrarPorODFC(cargarDatosPHF(parametro[2], arr), parametro);
             break;
         case "ODFCP":
-            let [paramOrig, paramDest, paramFech, paramCate, paramPrec] = param;
-            arrPrecio = aplicarPrecioTodos(arr);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            arrFecha = aplicarFecha(arrHorario, paramFech);
-            return filtrarPorODFCP(arrFecha, param);
+            return filtrarPorODFCP(cargarDatosPHF(parametro[2], arr), parametro);
+            break;
+        case "DFCPH":
+            return filtrarPorDFCPH(cargarDatosPHF(parametro[1], arr), parametro);
+            break;
+        case "FCPH":
+            return filtrarPorFCPH(cargarDatosPHF(parametro[0], arr), parametro);
+            break;
+        case "CPH":
+            return filtrarPorCPH(cargarDatosPHF(fechaFormateada, arr), parametro);
+            break;
+        case "PH":
+            return filtrarPorPH(cargarDatosPHF(fechaFormateada, arr), parametro);
+            break;
+        case "DFCP":
+            return filtrarPorDFCP(cargarDatosPHF(parametro[1], arr), parametro);
+            break;
+        case "FCP":
+            return filtrarPorFCP(cargarDatosPHF(parametro[0], arr), parametro);
+            break;
+        case "CP":
+            return filtrarPorCP(cargarDatosPHF(fechaFormateada, arr), parametro);
+            break;
+        case "DFC":
+            return filtrarPorDFC(cargarDatosPHF(parametro[1], arr), parametro);
+            break;
+        case "CH":
+            return filtrarPorCH(cargarDatosPHF(fechaFormateada, arr), parametro);
             break;
         case "Completo":
-            let [paramO, paramD, paramF, paramC, paramP, paramH] = param;
-            console.log(paramF);
-            arrPrecio = aplicarPrecioTodos(arr);
-            console.log(arrPrecio);
-            arrHorario = aplicarHorarioTodos(arrPrecio);
-            console.log(arrHorario);
-            arrFecha = aplicarFecha(arrHorario , paramF)
-            console.log(arrFecha);
-            filtroAll = filtrarPorTodo(arrFecha, param);
-            console.log(filtroAll);
-            return filtroAll;
+            return filtrarPorTodo(cargarDatosPHF(parametro[2], arr), parametro);
             break;
         default:
             break;
@@ -294,42 +388,47 @@ function cargarFiltro(arr, param, cate){
     
 }
 
-function aplicarPrecioTurista(arr, param){
+function cargarDatosPHF(fechaForm, array){
+    arrPrecio = aplicarPrecioTodos(array);
+    arrHorario = aplicarHorarioTodos(arrPrecio);
+    return aplicarFecha(arrHorario, fechaForm);
+}
+
+
+function aplicarPrecio(arr, param){
     let arrayClone = structuredClone(arr);
-    arrayClone.forEach(el => {
-        el.categoria = param
-    });
-    return arrayClone;
-}
-
-function aplicarPrecioPremium(arr, param){
-    let arrayClone1 = structuredClone(arr);
-    arrayClone1.forEach(el => {
-        el.categoria = param;
-        el.precio = Math.floor(el.precio * (1 + 0.10))
+    switch (param) {
+        case "Clase Turista":
+            arrayClone.forEach(el => {
+                el.categoria = param
+            });
+            return arrayClone;
+            break;
+        case "Clase Premium Economy":
+            arrayClone.forEach(el => {
+                el.categoria = param;
+                el.precio = Math.floor(el.precio * (1 + 0.10))
+            });
+            return arrayClone;
+            break;
+        case "Clase Ejecutiva":
+            arrayClone.forEach(el => {
+                el.categoria = param;
+                el.precio = Math.floor(el.precio * (1 + 0.20))
+            });
+            return arrayClone;
+            break;
+        case "Primera Clase":
+            arrayClone.forEach(el => {
+                el.categoria = param;
+                el.precio = Math.floor(el.precio * (1 + 0.30))
+            });
+            return arrayClone;
+            break;
     
-    });
-    return arrayClone1;
-}
-
-function aplicarPrecioEjecutiva(arr, param){
-    let arrayClone2 = structuredClone(arr);
-    arrayClone2.forEach(el => {
-        el.categoria = param;
-        el.precio = Math.floor(el.precio * (1 + 0.20))
-    
-    });
-    return arrayClone2;
-}
-
-function aplicarPrecioPrimera(arr, param){
-    let arrayClone3 = structuredClone(arr);
-    arrayClone3.forEach(el => {
-        el.categoria = param;
-        el.precio = Math.floor(el.precio * (1 + 0.30))
-    
-    });
-    return arrayClone3;
+        default:
+            break;
+    }
 }
 
 function aplicarHorario(arr, param){
@@ -342,7 +441,6 @@ function aplicarHorario(arr, param){
 
 
 function aplicarHorarioTodos(arr){
-    // console.log(arr);
     let arr1 = aplicarHorario(arr, "08:00hs");
     let arr2 = aplicarHorario(arr, "11:00hs");
     let arr3 = aplicarHorario(arr, "14:00hs");
@@ -364,11 +462,10 @@ function aplicarFecha(arr, param){
 
 
 function aplicarPrecioTodos(arr){
-    // console.log(arr);
-    let arr1 = aplicarPrecioTurista(arr, "Clase Turista");
-    let arr2 = aplicarPrecioPremium(arr, "Clase Premium Economy");
-    let arr3 = aplicarPrecioEjecutiva(arr, "Clase Ejecutiva");
-    let arr4 = aplicarPrecioPrimera(arr, "Primera Clase");
+    let arr1 = aplicarPrecio(arr, "Clase Turista");
+    let arr2 = aplicarPrecio(arr, "Clase Premium Economy");
+    let arr3 = aplicarPrecio(arr, "Clase Ejecutiva");
+    let arr4 = aplicarPrecio(arr, "Primera Clase");
     let arrayAll = arr1.concat(arr2, arr3, arr4);
     return arrayAll;
 }
@@ -388,9 +485,9 @@ async function cargarVuelosGenerales(param, categoria){
         let filtro = cargarFiltro(dataVuelos, param, categoria);
         console.log(filtro);
         info.innerHTML = "";
+        no_vuelos.innerHTML = "";
         if(!filtro || filtro.length == 0){
-            info.innerHTML = "";
-            no_vuelos.innerHTML = "";
+            paginacion.innerHTML = "";
             const row = document.createElement('h5');
             row.classList.add("text-center", "my-2");
             row.innerText = `
@@ -401,7 +498,8 @@ async function cargarVuelosGenerales(param, categoria){
 
         }
         else{
-            mostrarDatos(filtro);
+            paginaActual = 1;
+            mostrarDatos(filtro, paginaActual);
 
         }
         
@@ -415,13 +513,14 @@ async function cargarVuelosGenerales(param, categoria){
     }
 }
 
-function mostrarDatos(datos = '') {
+function mostrarDatos(datos = '', pagina) {
+    paginaActual = pagina;
     generarBotonesPaginacion(datos);
     const inicio = (paginaActual - 1) * resultadosPorPagina;
     const fin = paginaActual * resultadosPorPagina;
     let filtro = datos.slice(inicio, fin);
     filtro.forEach(vuelo => {
-        let {origen, destino, aeropuertoIda, aeropuertoVuelta, 
+        let {id, origen, destino, aeropuertoIda, aeropuertoVuelta, 
             fecha, categoria, precio, horario} = vuelo;
         const vueloTr = document.createElement('tr');
         vueloTr.innerHTML+= `
@@ -434,12 +533,13 @@ function mostrarDatos(datos = '') {
                             <td class="">$${precio}</td>
                             <td class="">${horario}</td>
                             <td class="">
-                                <button class="btn btn-success">Agregar al carrito</button>
+                                <button class="btn btn-success add-cart" onclick="addCartClicked(event)">
+                                Agregar al carrito</button>
                             </td>
         `
         document.cookie = "origen: " + origen + ",destino: " + destino + ",aeropuertoIda: " + aeropuertoIda + ",aeropuertoVuelta: " + aeropuertoVuelta
             + ",fecha: " + fecha + ",categoria: " + categoria + ",precio: " + precio + ",horario: " + horario;
-        console.log(document.cookie);
+        // console.log(document.cookie);
         info.appendChild(vueloTr);
 
         
@@ -453,7 +553,6 @@ function mostrarDatos(datos = '') {
 function generarBotonesPaginacion(datos) {
     const paginacionUl = document.querySelector('#paginacion');
     paginacionUl.innerHTML = '';
-    console.log(datos)
   
     const totalPaginas = Math.ceil(datos.length / resultadosPorPagina);
   
@@ -462,29 +561,30 @@ function generarBotonesPaginacion(datos) {
       const li = document.createElement('li');
       li.classList.add('page-item');
       
-      const a = document.createElement('a');
+      const a = document.createElement('button');
       a.classList.add('page-link');
-      a.href = '#';
       a.innerText = index + 1;
-
       
   
       a.addEventListener('click', (e) => {
         e.preventDefault();
         // Eliminar la clase 'active' de todos los botones
-        const botones = document.querySelectorAll('.page-link');
+        const botones = [...document.querySelectorAll('.page-item')];
         botones.forEach((boton) => {
             boton.classList.remove('active');
         });
 
-        console.log(e.target);
         // Agregar la clase 'active' solo al botón seleccionado
-        li.classList.add('active');
+        // li.classList.add('active');
         paginaActual = index + 1;
         info.innerHTML = "";
-        mostrarDatos(datos);
+        mostrarDatos(datos, paginaActual);
         generarBotonesPaginacion(datos);
       });
+
+      if (paginaActual === (index + 1)) {
+        a.classList.add("active"); // Agregar una clase "active" al botón de la página actual
+      }
   
       li.appendChild(a);
       paginacionUl.appendChild(li);
