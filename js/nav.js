@@ -7,11 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
   let dropdownPrecio = document.getElementById("dropdownPrecio");
   let dropdownHorario = document.getElementById("dropdownHorario");
 
-  let origenes = ["Origen", "Buenos Aires", "Entre Rios", "Santa Fe"];
+  let origenes = ["Origen", "Buenos Aires", "Entre Rios", "Santa Fe", 
+                  "San Carlos de Bariloche", "Puerto Iguazu", "Mendoza",
+                  "Salta", "San Salvador de Jujuy", "Rio de Janeiro"];
 
   // Creo un arreglo de destino que deseas agregar al select de manera dinámica
   let destinos = ["Destino", "San Carlos de Bariloche", "Puerto Iguazu", "Salta", 
-                  "Miami", "San Salvador de Jujuy", "Rio de Janeiro", "Mendoza"];
+                  "Miami", "San Salvador de Jujuy", "Rio de Janeiro", "Mendoza",
+                  "Barcelona", "Paris","Múnich", "Roma", "Ámsterdam"];
   
   let categorias = ["Categoria", "Primera Clase", "Clase Ejecutiva", "Clase Premium Economy", "Clase Turista"];
 
