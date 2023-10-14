@@ -192,6 +192,10 @@
   opacity: 0.5;
 }
 
+.search-btn:hover {
+  opacity: 0.5;
+}
+
 .color-search{
   background-color: #FAD87A;
   color: #FAD87A;

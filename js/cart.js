@@ -24,14 +24,14 @@ function obtenerCarrito() {
 
 
 //Abre el carrito
-cartIcon.onclick = () =>{
-    cart.classList.add("active")
-}
+//cartIcon.onclick = () =>{
+//    cart.classList.add("active")
+//}
 
 //Cierra el carrito
-closeCart.onclick = () =>{
-    cart.classList.remove("active")
-}
+//closeCart.onclick = () =>{
+//    cart.classList.remove("active")
+//}
 
 //Cart working JS
 if(document.readyState == 'loading'){
@@ -72,7 +72,7 @@ function ready(){
     }
 
     //buy button work
-    document.getElementsByClassName("btn-buy")[0].addEventListener("click", buyButtonClicked);
+    document.getElementsByClassName("buy-btn")[0].addEventListener("click", buyButtonClicked);
 
 }
 
@@ -91,14 +91,11 @@ function buyButtonClicked(){
 function removeCartItem(event){
     let buttonClicked = event.target;
     // let index = i;
-    let indice = buttonClicked.id;
+    let indice = buttonClicked.getAttribute('data-id');
     carrito = obtenerCarrito();
     carrito.splice(indice, 1);
     Cookies.set('carrito', JSON.stringify(carrito));
-    buttonClicked.parentElement.remove();
-    // carrito.forEach((element, index) => {
-        
-    // });
+    buttonClicked.parentElement.parentElement.parentElement.remove();
     updatetotal();
 }
 
@@ -158,26 +155,27 @@ function addProductToCart(carrit){
     carrit.forEach((element, index) => {
         const {origen, destino, ida, vuelta, fecha, categoria, precio, horario } = element
         let cartBoxContent = `
-                            <div class="detail-box">
+                        <div class="detail-box rounded-3 p-3 text-white" style="background-color: #00000082;">
                             <div class="cart-product-title">Origen: ${origen}</div>
                             <div class="cart-product-title">Destino: ${destino}</div>
                             <div class="cart-product-title">Fecha: ${fecha}</div>
                             <div class="cart-product-title">Categoria: ${categoria}</div>
                             <div class="cart-product-title">Horario: ${horario}</div>
                             <div class="cart-price">Precio: ${precio}</div>
-                            <input type="number" value="1" class="cart-quantity">
-                        </div>
-                        <!--Remove Cart-->
-                        <i class='bx bxs-trash-alt cart-remove' id="${index}"></i>`;
-
-
+                            <div class="flex flex-row justify-content-between" style="align-content: center;display: flex;">
+                                <input type="number" value="1" class="cart-quantity">
+                                <!--Remove Cart-->
+                                <i class='bx bxs-trash-alt cart-remove' data-id="${index}"></i>
+                            </div>
+                        </div>`;
+        
         cartShopBox.innerHTML = cartBoxContent;
         cartItems.append(cartShopBox);
         cartShopBox.getElementsByClassName("cart-remove")[0].addEventListener("click",removeCartItem);
         cartShopBox.getElementsByClassName("cart-quantity")[0].addEventListener("change", quantityChanged);
 
     });
-    
+    updatetotal();
 }
 
 //actualizar total
@@ -189,7 +187,7 @@ function updatetotal(){
         let cartBox = cartBoxes[i];
         let priceElement = cartBox.getElementsByClassName("cart-price")[0];
         let quantityElement = cartBox.getElementsByClassName("cart-quantity")[0];
-        let price = parseFloat(priceElement.innerText.replace("$",""));
+        let price = parseFloat(priceElement.innerText.split(" ")[1].replace("$",""));
         let quantity = quantityElement.value;
         total = total + (price * quantity);
     }

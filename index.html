@@ -28,7 +28,7 @@
 
 <body>
     <!--Header-->
-    <header>
+    <header style="z-index: 101;">
         <!--Nav-->
         <div class="nav container">
 
@@ -39,46 +39,7 @@
             </ul>
 
             <!--Carito icono-->
-            <i class='bx bx-shopping-bag' id="cart-icon"></i>
-            <!--Cart-->
-            <div class="cart">
-                <h2 class="cart-title">Tus Reservas</h2>
-                <!--Content-->
-                <div class="cart-content">
-
-                </div>
-
-                <div class="container">
-                  <form id="formEmail" action="#">
-                      <!-- <h1>Formulario Email</h1> -->
-                      <div class="input-control">
-                          <label for="username">Nombre</label>
-                          <input id="username" name="username" type="text">
-                          <div class="error"></div>
-                      </div>
-                      <div class="input-control">
-                          <label for="email">Email</label>
-                          <input id="email" name="email" type="text">
-                          <div class="error"></div>
-                      </div>
-                      <button type="submit" value="Send">Enviar</button>
-                  </form>
-              </div>
-              
-              <!--Total-->
-              <div class="total">
-                  <div class="total-title">Total</div>
-                  <div class="total-price">$0</div>
-              </div>
-
-              <!--Buy Button-->
-              <button type="button" class="btn-buy">Finalizar Compra</button>
-              <button type="button" onclick="vaciarCarrito()" class="btn btn-primary">Vaciar Carrito</button>
-              <!--Cart Close-->
-              <i class='bx bx-x' id="close-cart"></i>
-
-            </div>
-
+            <i class='bx bx-shopping-bag' id="cart-icon" data-bs-toggle="modal" data-bs-target="#carritoModal"></i>
         </div>
     </header>
 
@@ -135,14 +96,12 @@
                             </select>
                             <select id="dropdownHorario" class="form-select home-textinput4">
                             </select>
-                            <div class="home-search">
-                              <button id="boton-submit" type="submit">
-                                <img
-                                  id="search-vuelos"
-                                  alt="image"
-                                  src="./img/logos/search.svg"
-                                  class="home-icon"
-                                />
+                            <div>
+                              <button id="boton-submit" type="submit" class="search-btn" style="
+                                cursor: pointer; display: flex; padding: 12px; transition: 0.3s; align-items: center;
+                                border-radius: var(--dl-radius-radius-round); flex-direction: row; justify-content: center;
+                                background-color: #FAD87A;">
+                                <img id="search-vuelos" alt="image" src="./img/logos/search.svg" class="home-icon"/>
                               </button>
                             </div>
                           </div>
@@ -185,17 +144,64 @@
               </section>
             </div>
           </div>
-        
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <script src=" https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js "></script>
-    <script src="./js/nav.js"></script>
-    <script src="./js/filtrarVuelos.js"></script>
-    <script src="./js/cart.js"></script>
-    <script src="./js/formEmail.js"></script>
+  <!--Modal Cart-->
+  <div class="modal" id="carritoModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="cart-title">Tus Reservas</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <div class="modal-body">
+          <!--Content-->
+          <div class="cart-content"></div>
+
+          <!--Total-->
+          <div class="total">
+            <div class="total-title">Total: </div>
+            <div class="total-price">$0</div>
+          </div>
+
+          <div class="container">
+            <form id="formEmail" action="#">
+              <!-- <h1>Formulario Email</h1> -->
+              <div class="input-control">
+                <label for="username">Nombre</label>
+                <input id="username" name="username" type="text">
+                <div class="error"></div>
+              </div>
+              
+              <div class="input-control">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="text">
+                <div class="error"></div>
+              </div>
+              <button type="submit" value="Send">Enviar</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="flex flex-row justify-content-between">
+            <button type="button" onclick="vaciarCarrito()" class="btn btn-primary">Vaciar Carrito</button>
+            <button type="button" class="btn btn-success buy-btn">Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  <script src=" https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js "></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js "></script>
+  <script src="./js/nav.js"></script>
+  <script src="./js/filtrarVuelos.js"></script>
+  <script src="./js/cart.js"></script>
+  <script src="./js/formEmail.js"></script>
 </body>
 
 </html>
