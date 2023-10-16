@@ -1,5 +1,6 @@
 //validacion
-const validEmail = false;
+let validEmail = false;
+let validUserName = false;
 const formEmail = document.getElementById('formEmail');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
@@ -8,6 +9,10 @@ formEmail.addEventListener('submit', e => {
     e.preventDefault();
 
     validateInputs();
+
+    if(validEmail == true && validUserName == true){
+        envioMail();
+    }
 });
 
 const setError = (element, message) => {
@@ -41,6 +46,7 @@ const validateInputs = () => {
         setError(username, 'Username es requerido');
     } else {
         setSuccess(username);
+        validUserName = true;
     }
 
     if(emailValue === '') {
@@ -53,42 +59,75 @@ const validateInputs = () => {
     }
 };
 
-if(validEmail == true){
+const envioMail = () => {
+    console.log("entro");
     const nombreV = document.getElementById('username');
     const emailV = document.getElementById('email');
     const submit = document.getElementById('formEmail');
-    
-    submit.addEventListener('submit',(e)=>{
-        e.preventDefault();
-    
+
+    let data = obtenerCarrito();
+    if(data == null && data.lenght === 0){
+        setError(email, 'Carrito vacio');
+    }else{
+        let total = 0;
+        let pasajeNro = 1;
         let ebody = ` <h3><strong>Estimado/a:</strong> ${nombreV.value},</span></h3>
                             <hr />
                             <span><strong>Nombre:</strong> ${nombreV.value}</span><br />
                             <span><strong>Direccion de Email:</strong>  ${emailV.value}</span><br />
                             <hr />
-                            <span><strong>Le confirmamos que su compra de pasaje ha sido exitosa:</strong>  Orden Nro 8902</span><br /><br />
-                            <span>Información de su compra:</span><br />
+                            <span><strong>Le confirmamos que su pedido de compra ha sido exitosa.</strong></span>
+                            <span>Información de su compra:</span><br />`;
+        let listaPasajes = ``;
+
+        data.forEach((element) => {
+            const {origen, destino, ida, vuelta, fecha, categoria, precio, horario } = element
+
+            listaPasajes = listaPasajes + `
                             <ul>
-                                <li>Origen: <strong>[origen]</strong></li>
-                                <li>Destino: <strong>[destino]</strong></li>
-                                <li>Fecha de salida: <strong>[fecha de salida]</strong></li>
-                                <li>Fecha de llegada: <strong>[fecha de llegada]</strong></li>
-                                <li>Número de vuelo: <strong>[número de vuelo]</strong></li>
-                                <li>Compañía aérea: <strong>[compañía aérea]</strong></li>
-                                <li>Tarifa: <strong>[tarifa]</strong></li>
+                                <li><strong>Pasaje Nro ${pasajeNro}</strong></li>
+                                <li><strong>Origen:</strong> ${origen}</li>
+                                <li><strong>Destino:</strong> ${destino}</li>
+                                <li><strong>Ida:</strong> ${ida}</li>
+                                <li><strong>Vuelta:</strong> ${vuelta}</li>
+                                <li><strong>Fecha:</strong> ${fecha}</li>
+                                <li><strong>Categoria:</strong> ${categoria}</li>
+                                <li><strong>Horario:</strong> ${horario}</li>
+                                <li><strong>Precio:</strong> ${precio}</li>
                             </ul>
-                            <span>¡Le deseamos un feliz viaje!</span><br />
-                            <span>Atentamente,</span>
-                            <span>Despegar Ecommerce</span>`;
-    
+                            <hr />
+                            <br /><br />`;
+            total = precio +1;
+            pasajeNro = pasajeNro +1;
+        });
+
+        let finEmail = `
+                        <span>Precio total: ${total}</span>
+                        <hr />
+                        <br /><br />
+                        <span><strong>Para finalizar la compra y ejercer el pago nos comunicaremos por este mismo medio.</strong></span><br />
+                        <span>Atentamente,</span>
+                        <span>Despegar Ecommerce</span>`;
+
+        ebody = ebody + listaPasajes + finEmail;
+
+        console.log(ebody);
+
+
         Email.send({
             SecureToken :  "cd4a9dc6-0929-4738-9190-0716e4849d15", //add your token here 3807DED6EDAA606BD1ADCE900531F61A2890
             To : emailV.value, 
             From : "elian.race.eg15@gmail.com",
             Subject : "Confirmación de compra de pasaje Despegar Ecommerce",
             Body : ebody
-        }).then(
-          message => alert(message)
+        }).then(    
+            message => alert(message)
         );
-    });
+    }
+}
+
+
+function obtenerCarrito() {
+    let carrito = Cookies.get('carrito');
+    return carrito ? JSON.parse(carrito) : [];
 }
