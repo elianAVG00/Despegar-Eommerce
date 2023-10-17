@@ -238,4 +238,16 @@
   cursor: pointer;
 }
 
+#notificacion{
+  height: 30px;
+  width: 30px;
+  font-size: 1rem;
+  padding-right: 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #6402f2;
+  color: #e1e1e1;
+  display: none;
 
+}

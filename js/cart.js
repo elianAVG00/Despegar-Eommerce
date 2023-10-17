@@ -3,35 +3,32 @@ let cartIcon = document.querySelector("#cart-icon");
 let cart = document.querySelector(".cart");
 let closeCart = document.querySelector("#close-cart");
 let carrito = [];
-// let dataVuelos = [];
-// let op;
-// let clos;
+let total = 0;
+let price;
+let quantity;
+let seccion;
+let dataDetalles;
 
-// if (Cookies.get('miCookie')) {
-//     // Hacer algo con los datos de la cookie
-//     carrito = JSON.parse(Cookies.get('miCookie'));
-//   } else {
-//     // No hagas nada o realiza una acción alternativa
-//     Cookies.set('carrito', JSON.stringify(carrito),{ expires: 7, path: '' });
-//   }
 
+
+// Conjunto para almacenar los IDs utilizados
+const idsUtilizados = new Set();
+
+// Función para generar un ID único entre 1 y 100
+function generarIDUnico() {
+  let nuevoID;
+  do {
+    nuevoID = Math.floor(Math.random() * 100) + 1;
+  } while (idsUtilizados.has(nuevoID));
+  idsUtilizados.add(nuevoID);
+  return nuevoID;
+}
 
 function obtenerCarrito() {
     carrito = Cookies.get('carrito');
-    return carrito ? JSON.parse(carrito) : [];
+    return carrito ? JSON.parse(carrito) : [];;
 }
 
-
-
-//Abre el carrito
-//cartIcon.onclick = () =>{
-//    cart.classList.add("active")
-//}
-
-//Cierra el carrito
-//closeCart.onclick = () =>{
-//    cart.classList.remove("active")
-//}
 
 //Cart working JS
 if(document.readyState == 'loading'){
@@ -46,25 +43,21 @@ function ready(){
     addProductToCart(carrito);
     //Remover items desde carrito
     let reomveCartButtons = document.getElementsByClassName('cart-remove');
-    console.log(reomveCartButtons);
     for(let i = 0; i < reomveCartButtons.length; i++){
         let button = reomveCartButtons[i];
-        // let indice = 
-        // console.log(reomveCartButtons.id.value);
         button.addEventListener('click', removeCartItem);
     }
 
     //quantity changes
-    var quantityInputs = document.getElementsByClassName('cart-quantity');
+    let quantityInputs = document.getElementsByClassName('cart-quantity');
     for(let i = 0; i < quantityInputs.length; i++){
         let input = quantityInputs[i];
-        input.addEventListener("change",quantityChanged);
+        input.addEventListener("input",quantityChanged);
     }
 
     //Add to Cart
     let addCart = document.getElementsByClassName("add-cart");
 
-    console.log(addCart);
     for(let i = 0; i < addCart.length; i++){
         let button = addCart[i];
         console.log(addCart[i]);
@@ -92,69 +85,124 @@ function removeCartItem(event){
     let buttonClicked = event.target;
     // let index = i;
     let indice = buttonClicked.getAttribute('data-id');
-    carrito = obtenerCarrito();
-    carrito.splice(indice, 1);
+    carrito = carrito.filter(el => el.idReserva != parseInt(indice));
     Cookies.set('carrito', JSON.stringify(carrito));
-    buttonClicked.parentElement.parentElement.parentElement.remove();
-    updatetotal();
+    carrito = obtenerCarrito();
+    console.log(carrito);
+    contarProductos();
+    // updatetotal();
+    addProductToCart(carrito);
+    // buttonClicked.parentElement.parentElement.remove();
 }
 
 //quantity changes
-function quantityChanged(event){
-    let input = event.target;
-    if(isNaN(input.value) || input.value <= 0){
-        input.value = 1;
-    }
+function quantityChanged(e){
+    quantity = Number(e.target.value);
     updatetotal();
 }
 
 //Add to Cart
-function addCartClicked(event){
-    if(event.target.classList.contains('add-cart')){
-        const fila = event.target.closest('tr');
-        console.log(fila);
+function addCartClicked(event, data = []){
+    let elBut;
+    carrito = obtenerCarrito();
+    if(data.length != 0){
+        dataDetalles = data.filter(el => el.id == parseInt(event.target.id));
+        console.log(dataDetalles);
+        dataDetalles[0].idReserva = generarIDUnico();
+        // delete dataDetalles[0].id;
+    }
+    if(event.target.classList.contains('add-cart') && event.target.classList.contains('generales')){
+        elBut = event.target;
+        seccion = "generales";
+        const fila = elBut.closest('tr');
         // Verifica que se haya encontrado una fila
         if (fila) {
             const celdas = fila.getElementsByTagName("td");
-            console.log(celdas);
             let origen = celdas[0].textContent;
             let destino = celdas[1].textContent;
-            let ida = celdas[2].textContent;
-            let vuelta = celdas[3].textContent;
             let fecha = celdas[4].textContent;
             let categoria = celdas[5].textContent;
             let precio = celdas[6].textContent;
             let horario = celdas[7].textContent;
-            carrito = obtenerCarrito();
-            carrito.push({origen, destino, ida, vuelta, fecha, categoria, precio, horario});
-            console.log(carrito);
+            carrito.push({idReserva: generarIDUnico(), origen, destino, fecha, categoria, precio, horario});
             // Almacena el array serializado en una cookie
-            Cookies.set('carrito', JSON.stringify(carrito),{ expires: 7, path: '' });
+            Cookies.set('carrito', JSON.stringify(carrito));
             
         }
     }
+    if(event.target.classList.contains('add') && event.target.classList.contains('detalles')){
+        elBut = event.target;
+        seccion = "detalles";
+        let idReserva = dataDetalles[0].idReserva;
+        let origen = dataDetalles[0].origen;
+        let destino = dataDetalles[0].destino;
+        let fecha = dataDetalles[0].fecha1;
+        let categoria = dataDetalles[0].categoria;
+        let precio = "$" + dataDetalles[0].precio;
+        let horario = dataDetalles[0].hora1 + "HS";
+        // carrito = obtenerCarrito();
+        carrito.push({idReserva, origen, destino, fecha,
+                categoria, precio, horario});
+        // Cookies.set('carrito', JSON.stringify(carrito),{ expires: 7, path: '' });
+        let origen1 = dataDetalles[0].destino;
+        let destino1 = dataDetalles[0].origen;
+        let fecha1 = dataDetalles[0].fecha2;
+        let categoria1 = dataDetalles[0].categoria;
+        let precio1 = "$" + dataDetalles[0].precio;
+        let horario1 = dataDetalles[0].hora2 + "HS";
+        carrito.push({idReserva: generarIDUnico(), origen: origen1, destino: destino1, fecha: fecha1, 
+            categoria: categoria1, precio: precio1, horario: horario1});
+        // Almacena el array serializado en una cookie
+        Cookies.set('carrito', JSON.stringify(carrito));
+            
+        
+    }
+    console.log(carrito);
+    carrito = obtenerCarrito();
+    contarProductos();
     addProductToCart(carrito);
-    updatetotal();
 
 }
+
+
+function contarProductos(){
+
+    
+    let notificacion = document.getElementById("notificacion");
+    const carritoData = Cookies.get('carrito');
+    const carritoLength = carritoData ? JSON.parse(carritoData).length : undefined;
+
+    if(!carritoLength){
+        notificacion.innerHTML = 0;
+        notificacion.classList.remove("animate__fadeIn");
+        notificacion.classList.add("animate__animated", "animate__fadeOut");
+    }
+    else if(carritoLength && carritoLength != 0) {
+        notificacion.setAttribute("style", "display: flex;");
+        notificacion.innerHTML = carritoLength;
+        notificacion.classList.remove("animate__fadeOut");
+        notificacion.classList.add("animate__animated", "animate__fadeIn");
+    }
+    else if(!carritoLength && carritoLength == 0){
+        notificacion.innerHTML = carritoLength;
+        notificacion.classList.remove("animate__fadeIn");
+        notificacion.classList.add("animate__animated", "animate__fadeOut");
+    }
+} 
+
+contarProductos();
 
 function addProductToCart(carrit){
     let cartShopBox = document.createElement("div");
     cartShopBox.classList.add("cart-box");
     let cartItems = document.getElementsByClassName("cart-content")[0];
-    let cartItemsNames = cartItems.getElementsByClassName("cart-product-title");
-    console.log(cartItemsNames)
-    // for (let i = 0; i < cartItemsNames.length; i++){
-    //     if(cartItemsNames[i].innerText == title){
-    //     alert("Usted ya ha añadido este elemento a sus pedidos!!");
-    //     return;
-    // }
-    
-    // }
+    console.log(carrit);
 
+    cartItems.innerHTML = '';
     carrit.forEach((element, index) => {
-        const {origen, destino, ida, vuelta, fecha, categoria, precio, horario } = element
-        let cartBoxContent = `
+        // if(seccion == "generales"){
+            const {idReserva, origen, destino, fecha, categoria, precio, horario } = element;
+            let cartBoxContent = `
                         <div class="detail-box rounded-3 p-3 text-white" style="background-color: #00000082;">
                             <div class="cart-product-title">Origen: ${origen}</div>
                             <div class="cart-product-title">Destino: ${destino}</div>
@@ -163,38 +211,50 @@ function addProductToCart(carrit){
                             <div class="cart-product-title">Horario: ${horario}</div>
                             <div class="cart-price">Precio: ${precio}</div>
                             <div class="flex flex-row justify-content-between" style="align-content: center;display: flex;">
-                                <input type="number" value="1" class="cart-quantity">
+                                <input type="number" value="1" min="1" class="cart-quantity">
                                 <!--Remove Cart-->
-                                <i class='bx bxs-trash-alt cart-remove' data-id="${index}"></i>
+                                <i class='bx bxs-trash-alt cart-remove' data-id="${idReserva}"></i>
                             </div>
                         </div>`;
         
-        cartShopBox.innerHTML = cartBoxContent;
+        
+        
+        cartShopBox.innerHTML += cartBoxContent;
         cartItems.append(cartShopBox);
-        cartShopBox.getElementsByClassName("cart-remove")[0].addEventListener("click",removeCartItem);
-        cartShopBox.getElementsByClassName("cart-quantity")[0].addEventListener("change", quantityChanged);
+            
+        
+        cartShopBox.getElementsByClassName("cart-remove")[index]?.addEventListener("click",removeCartItem);
+        cartShopBox.getElementsByClassName("cart-quantity")[index]?.addEventListener("input", quantityChanged);
+        
 
     });
     updatetotal();
 }
 
+
+
+//actualizar total
 //actualizar total
 function updatetotal(){
     let cartContent = document.getElementsByClassName("cart-content")[0];
-    let cartBoxes = cartContent.getElementsByClassName("cart-box");
-    let total = 0;
+    let cartBoxes = cartContent.getElementsByClassName("detail-box");
+    let priceElement;
+    let quantityElement;
+    let cartBox;
+    total = 0;
     for(let i = 0; i < cartBoxes.length; i++){
-        let cartBox = cartBoxes[i];
-        let priceElement = cartBox.getElementsByClassName("cart-price")[0];
-        let quantityElement = cartBox.getElementsByClassName("cart-quantity")[0];
-        let price = parseFloat(priceElement.innerText.split(" ")[1].replace("$",""));
-        let quantity = quantityElement.value;
+        cartBox = cartBoxes[i];
+        priceElement = cartBox.lastElementChild.previousElementSibling;
+        quantityElement = document.getElementsByClassName("cart-quantity")[i];
+        quantity = Number(quantityElement.value);
+        quantityElement.addEventListener("input", quantityChanged);
+        price = parseFloat(priceElement.innerText.split(" ")[1].replace("$",""));
         total = total + (price * quantity);
+
     }
-    
         //if price contain some cents value
         total = Math.round(total * 100) / 100;
-
+    
         document.getElementsByClassName('total-price')[0].innerText = "$" + total;
     
 }
@@ -203,8 +263,9 @@ function updatetotal(){
 
 function vaciarCarrito(){
     Cookies.remove('carrito');
-    console.log(JSON.parse(Cookies.get('miCookie')));
-    // Cookies.set('carrito', JSON.stringify(carrito),{ expires: 7, path: '' });
-    // window.location.reload();
+    contarProductos();
+    carrito = obtenerCarrito();
+    addProductToCart(carrito);
+    
 }
 

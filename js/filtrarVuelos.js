@@ -533,7 +533,7 @@ function mostrarDatos(datos = '', pagina) {
                             <td class="">$${precio}</td>
                             <td class="">${horario}</td>
                             <td class="">
-                                <button class="btn btn-success add-cart" onclick="addCartClicked(event)">Agregar al carrito</button>
+                                <button class="btn btn-success add-cart generales" onclick="addCartClicked(event)">Agregar al carrito</button>
                             </td>
         `
         // document.cookie = "origen: " + origen + ",destino: " + destino + ",aeropuertoIda: " + aeropuertoIda + ",aeropuertoVuelta: " + aeropuertoVuelta

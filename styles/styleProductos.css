@@ -363,6 +363,7 @@ button {
 /*-----------------------------------------------------------------*/
 #cart-icon{
     font-size: 2.2rem;
+    padding-left: 40rem;
     cursor: pointer;
     color: white;
 }
@@ -642,4 +643,17 @@ box-shadow:  20px 20px 60px #bebebe,
 
     
 
+}
+
+#notificacion{
+    height: 30px;
+    width: 30px;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #6402f2;
+    color: #e1e1e1;
+    display: none;
+  
 }
