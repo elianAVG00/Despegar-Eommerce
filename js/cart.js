@@ -81,10 +81,10 @@ function removeCartItem(event){
     let buttonClicked = event.target;
     // let index = i;
     let indice = buttonClicked.getAttribute('data-id');
-    carrito = carrito.filter(el => el.idReserva != parseInt(indice));
-    Cookies.set('carrito', JSON.stringify(carrito));
     carrito = obtenerCarrito();
-    console.log(carrito);
+    let carr = carrito.filter(el => el.idReserva != parseInt(indice));
+    Cookies.set('carrito', JSON.stringify(carr));
+    carrito = obtenerCarrito();
     contarProductos();
     // updatetotal();
     addProductToCart(carrito);
@@ -116,11 +116,13 @@ function addCartClicked(event, data = []){
             const celdas = fila.getElementsByTagName("td");
             let origen = celdas[0].textContent;
             let destino = celdas[1].textContent;
+            let ida = celdas[2].textContent;
+            let vuelta = celdas[3].textContent;
             let fecha = celdas[4].textContent;
             let categoria = celdas[5].textContent;
             let precio = celdas[6].textContent;
             let horario = celdas[7].textContent;
-            carrito.push({idReserva: generarIDUnico(), origen, destino, fecha, categoria, precio, horario});
+            carrito.push({idReserva: generarIDUnico(), origen, destino, ida, vuelta, fecha, categoria, precio, horario});
             // Almacena el array serializado en una cookie
             Cookies.set('carrito', JSON.stringify(carrito));
             
@@ -132,21 +134,26 @@ function addCartClicked(event, data = []){
         let idReserva = dataDetalles[0].idReserva;
         let origen = dataDetalles[0].origen;
         let destino = dataDetalles[0].destino;
+        let ida = dataDetalles[0].aeropuerto1;
+        let vuelta = dataDetalles[0].aeropuerto2;
         let fecha = dataDetalles[0].fecha1;
         let categoria = dataDetalles[0].categoria;
         let precio = "$" + dataDetalles[0].precio;
         let horario = dataDetalles[0].hora1 + "HS";
         // carrito = obtenerCarrito();
-        carrito.push({idReserva, origen, destino, fecha,
+        carrito.push({idReserva, origen, destino, ida, vuelta, fecha,
                 categoria, precio, horario});
         // Cookies.set('carrito', JSON.stringify(carrito),{ expires: 7, path: '' });
         let origen1 = dataDetalles[0].destino;
         let destino1 = dataDetalles[0].origen;
+        let ida1 = dataDetalles[0].aeropuerto2;
+        let vuelta1 = dataDetalles[0].aeropuerto1;
         let fecha1 = dataDetalles[0].fecha2;
         let categoria1 = dataDetalles[0].categoria;
         let precio1 = "$" + dataDetalles[0].precio;
         let horario1 = dataDetalles[0].hora2 + "HS";
-        carrito.push({idReserva: generarIDUnico(), origen: origen1, destino: destino1, fecha: fecha1, 
+        carrito.push({idReserva: generarIDUnico(), origen: origen1, destino: destino1, ida: ida1, 
+            vuelta: vuelta1, fecha: fecha1, 
             categoria: categoria1, precio: precio1, horario: horario1});
         // Almacena el array serializado en una cookie
         Cookies.set('carrito', JSON.stringify(carrito));
@@ -219,8 +226,8 @@ function addProductToCart(carrit){
         cartItems.append(cartShopBox);
             
         
-        cartShopBox.getElementsByClassName("cart-remove")[index]?.addEventListener("click",removeCartItem);
-        cartShopBox.getElementsByClassName("cart-quantity")[index]?.addEventListener("input", quantityChanged);
+        cartShopBox.getElementsByClassName("cart-remove")[index].addEventListener("click", removeCartItem);
+        cartShopBox.getElementsByClassName("cart-quantity")[index].addEventListener("input", quantityChanged);
         
 
     });
@@ -252,6 +259,8 @@ function updatetotal(){
         total = Math.round(total * 100) / 100;
     
         document.getElementsByClassName('total-price')[0].innerText = "$" + total;
+    
+        return total;
     
 }
 

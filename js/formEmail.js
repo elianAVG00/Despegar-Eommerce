@@ -100,7 +100,7 @@ const envioMail = () => {
                             </ul>
                             <hr />
                             <br /><br />`;
-            total = precio +1;
+            total = updatetotal();
             pasajeNro = pasajeNro +1;
         });
 
