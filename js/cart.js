@@ -40,7 +40,7 @@ if(document.readyState == 'loading'){
 //Making Function
 function ready(){
     carrito = obtenerCarrito();
-    addProductToCart(carrito);
+    
     //Remover items desde carrito
     let reomveCartButtons = document.getElementsByClassName('cart-remove');
     for(let i = 0; i < reomveCartButtons.length; i++){
@@ -60,9 +60,9 @@ function ready(){
 
     for(let i = 0; i < addCart.length; i++){
         let button = addCart[i];
-        console.log(addCart[i]);
         button.addEventListener("click", addCartClicked);
     }
+    addProductToCart(carrito);
 }
 
 //buy button
@@ -79,16 +79,13 @@ function buyButtonClicked(){
 //Remover items desde carrito,esto es en icono del tacho de basura
 function removeCartItem(event){
     let buttonClicked = event.target;
-    // let index = i;
     let indice = buttonClicked.getAttribute('data-id');
     carrito = obtenerCarrito();
     let carr = carrito.filter(el => el.idReserva != parseInt(indice));
     Cookies.set('carrito', JSON.stringify(carr));
     carrito = obtenerCarrito();
     contarProductos();
-    // updatetotal();
     addProductToCart(carrito);
-    // buttonClicked.parentElement.parentElement.remove();
 }
 
 //quantity changes
@@ -103,9 +100,7 @@ function addCartClicked(event, data = []){
     carrito = obtenerCarrito();
     if(data.length != 0){
         dataDetalles = data.filter(el => el.id == parseInt(event.target.id));
-        console.log(dataDetalles);
         dataDetalles[0].idReserva = generarIDUnico();
-        // delete dataDetalles[0].id;
     }
     if(event.target.classList.contains('add-cart') && event.target.classList.contains('generales')){
         elBut = event.target;
@@ -160,7 +155,6 @@ function addCartClicked(event, data = []){
             
         
     }
-    console.log(carrito);
     carrito = obtenerCarrito();
     contarProductos();
     addProductToCart(carrito);
@@ -199,11 +193,9 @@ function addProductToCart(carrit){
     let cartShopBox = document.createElement("div");
     cartShopBox.classList.add("cart-box");
     let cartItems = document.getElementsByClassName("cart-content")[0];
-    console.log(carrit);
 
     cartItems.innerHTML = '';
     carrit.forEach((element, index) => {
-        // if(seccion == "generales"){
             const {idReserva, origen, destino, fecha, categoria, precio, horario } = element;
             let cartBoxContent = `
                         <div class="detail-box rounded-3 p-3 text-white" style="background-color: #00000082;">
@@ -216,7 +208,7 @@ function addProductToCart(carrit){
                             <div class="flex flex-row justify-content-between" style="align-content: center;display: flex;">
                                 <input type="number" value="1" min="1" class="cart-quantity">
                                 <!--Remove Cart-->
-                                <i class='bx bxs-trash-alt cart-remove' data-id="${idReserva}"></i>
+                                <i class='bx bxs-trash-alt cart-remove' onclick="removeCartItem(event)" data-id="${idReserva}"></i>
                             </div>
                         </div>`;
         
@@ -226,7 +218,6 @@ function addProductToCart(carrit){
         cartItems.append(cartShopBox);
             
         
-        cartShopBox.getElementsByClassName("cart-remove")[index].addEventListener("click", removeCartItem);
         cartShopBox.getElementsByClassName("cart-quantity")[index].addEventListener("input", quantityChanged);
         
 

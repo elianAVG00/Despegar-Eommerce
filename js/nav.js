@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Ahora, puedes agregar un evento para manejar la selección de opciones, por ejemplo:
       drop.addEventListener("change", function() {
           let seleccion = drop.options[drop.selectedIndex].value;
-          // console.log(seleccion);
       });
 
   }

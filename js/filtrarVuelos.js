@@ -3,7 +3,6 @@ let search = document.getElementById("search-vuelos");
 let tabla = document.getElementById("tabla");
 let vuelos_disp = document.getElementById("vuelos-disp");
 let paginacion = document.getElementById("paginacion");
-// let pasajeros = document.getElementById("inputPasaj");
 // Obtén una referencia al elemento <select> en el HTML
 let origen = document.getElementById("dropdownOrigen");
 let destino = document.getElementById("dropdownDestino");
@@ -28,7 +27,6 @@ luxon.Settings.defaultLocale = 'es';
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(e.target);
     let dataForm = new FormData(e.target);
     if ((origen.value === 'Origen') && (destino.value === 'Destino') && 
         (dataForm.get('fecha') === "") &&  
@@ -49,7 +47,6 @@ form.addEventListener("submit", (e) => {
             cat = "Completo";
             arrValoresForm.push(origen.value, destino.value, dataForm.get('fecha'),
                 categoria.value, nuevoPrecio, horario.value);
-            console.log(arrValoresForm);
             cargarVuelosGenerales(arrValoresForm, cat);
     }
     else if((origen.value !== 'Origen') && (destino.value !== 'Destino') && 
@@ -170,7 +167,6 @@ form.addEventListener("submit", (e) => {
         cargarVuelosGenerales(destino.value, cat);
     }
     else if(dataForm.get('fecha') !== ''){
-        console.log(dataForm.get('fecha')); 
         cat = "Fecha";
         cargarVuelosGenerales(dataForm.get('fecha'), cat);
     }
@@ -483,7 +479,6 @@ async function cargarVuelosGenerales(param, categoria){
         }
         let dataVuelos = await response.json();
         let filtro = cargarFiltro(dataVuelos, param, categoria);
-        console.log(filtro);
         info.innerHTML = "";
         no_vuelos.innerHTML = "";
         if(!filtro || filtro.length == 0){
@@ -536,9 +531,6 @@ function mostrarDatos(datos = '', pagina) {
                                 <button class="btn btn-success add-cart generales" onclick="addCartClicked(event)">Agregar al carrito</button>
                             </td>
         `
-        // document.cookie = "origen: " + origen + ",destino: " + destino + ",aeropuertoIda: " + aeropuertoIda + ",aeropuertoVuelta: " + aeropuertoVuelta
-        //     + ",fecha: " + fecha + ",categoria: " + categoria + ",precio: " + precio + ",horario: " + horario;
-        // console.log(document.cookie);
         info.appendChild(vueloTr);
 
         
@@ -596,4 +588,3 @@ window.addEventListener('load', ()=> {
     vuelos_disp.classList.add("d-none");
 });
 
-// mostrarDatos();
