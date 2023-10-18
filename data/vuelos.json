@@ -6,7 +6,7 @@
         "aeropuertoIda": "AEP-BRC",
         "aeropuertoVuelta": "BRC-AEP",
         "img": "brc.JPG",
-        "precio": 27508,
+        "precio": 31185,
         "seccion": "principal"
     },
     {
@@ -16,7 +16,7 @@
         "aeropuertoIda": "AEP-IGR",
         "aeropuertoVuelta": "IGR-AEP",
         "img": "iguazu.jpg",
-        "precio": 26925,
+        "precio": 29617,
         "seccion": "principal"
     },
     {
@@ -26,7 +26,7 @@
         "aeropuertoIda": "AEP-SLA",
         "aeropuertoVuelta": "SLA-AEP",
         "img": "salta.jpg",
-        "precio": 28992,
+        "precio": 31891,
         "seccion": "principal"
     },
     {
@@ -46,7 +46,7 @@
         "aeropuertoIda": "AEP-COR",
         "aeropuertoVuelta": "COR-AEP",
         "img": "cordoba.jpg",
-        "precio": 18997,
+        "precio": 22226,
         "seccion": "principal"
     },
     {
