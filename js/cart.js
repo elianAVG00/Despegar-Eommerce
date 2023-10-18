@@ -63,10 +63,6 @@ function ready(){
         console.log(addCart[i]);
         button.addEventListener("click", addCartClicked);
     }
-
-    //buy button work
-    document.getElementsByClassName("buy-btn")[0].addEventListener("click", buyButtonClicked);
-
 }
 
 //buy button

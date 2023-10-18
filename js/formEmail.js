@@ -5,15 +5,18 @@ const formEmail = document.getElementById('formEmail');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 
-formEmail.addEventListener('submit', e => {
-    e.preventDefault();
-
+function validacionYEnvioMail(){
+    console.log("entro al mail");
+    validEmail = false;
+    validUserName = false;
     validateInputs();
 
     if(validEmail == true && validUserName == true){
         envioMail();
+        return true;
     }
-});
+    return false;
+};
 
 const setError = (element, message) => {
     const inputControl = element.parentElement;

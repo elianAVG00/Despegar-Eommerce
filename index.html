@@ -181,7 +181,6 @@
                 <input id="email" name="email" type="text">
                 <div class="error"></div>
               </div>
-              <button type="submit" value="Send">Enviar</button>
             </form>
           </div>
         </div>
@@ -189,7 +188,7 @@
         <div class="modal-footer">
           <div class="flex flex-row justify-content-between">
             <button type="button" onclick="vaciarCarrito()" class="btn btn-primary">Vaciar Carrito</button>
-            <button type="button" class="btn btn-success buy-btn">Finalizar Compra</button>
+            <button type="button" onclick="confirmacionCompra();" class="btn btn-success buy-btn">Finalizar Compra</button>
           </div>
         </div>
       </div>
@@ -205,6 +204,15 @@
   <script src="./js/filtrarVuelos.js"></script>
   <script src="./js/cart.js"></script>
   <script src="./js/formEmail.js"></script>
+  
+  <script>
+    function confirmacionCompra() {
+      console.log("entro al trest");
+     if(validacionYEnvioMail() == true){
+        buyButtonClicked();
+     }
+    }
+  </script>
 </body>
 
 </html>
