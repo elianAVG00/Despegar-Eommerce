@@ -473,7 +473,7 @@ let paginaActual = 1; // Página actual
 
 async function cargarVuelosGenerales(param, categoria){
     try {
-        const response = await fetch("../data/vuelos.json");
+        const response = await fetch("data/vuelos.json");
         if (!response.ok) {
             throw new Error('No se pudieron cargar los datos.');
         }
