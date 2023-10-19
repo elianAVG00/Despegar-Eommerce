@@ -9,7 +9,7 @@ let shop_menu = document.getElementById("shop-menu")
 
 async function cargarVuelosPrincipales(){
   try {
-      const response = await fetch("data/vuelos.json");
+      const response = await fetch("/data/vuelos.json");
       if (!response.ok) {
           throw new Error('No se pudieron cargar los datos.');
       }
@@ -55,7 +55,7 @@ const detalles = document.getElementById('modales');
 //Carga de modals
 async function cargarDetalles(){
   try {
-      const response = await fetch("data/detalles.json");
+      const response = await fetch("/data/detalles.json");
       if (!response.ok) {
           throw new Error('No se pudieron cargar los datos.');
       }
