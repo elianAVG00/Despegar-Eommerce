@@ -10,7 +10,7 @@ ___
 Integrantes
 
 | Nombre y apellido |
-| ------ | ------ | ------ |
+| ----------------- |
 | Cristian Ovejero |
 | Roger Ricciardulli |
 | Elian Gonzalez |
