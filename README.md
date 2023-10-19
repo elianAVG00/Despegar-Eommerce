@@ -5,7 +5,6 @@
 
 ## Trabajo Practico Despegar
 
-## Librerias
 ___
 Integrantes
 
@@ -15,4 +14,4 @@ Integrantes
 | Roger Ricciardulli |
 | Elian Gonzalez |
 | Jonathan Chaves |
-| Pablo |
+| Pablo Lopez|
