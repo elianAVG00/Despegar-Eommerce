@@ -1,12 +1,12 @@
 # Taller de Metodologías Ágiles 
 
 
-[VER DEMO] (https://eliangonzalez84.github.io/EcommerceDespegar-TMA2C2023E05/)
+[VER DEMO SITIO DESPEGAR](https://eliangonzalez84.github.io/EcommerceDespegar-TMA2C2023E05/)
 
 ## Trabajo Practico Despegar
 
 ___
-Integrantes
+### Integrantes
 
 | Nombre y apellido |
 | ----------------- |
